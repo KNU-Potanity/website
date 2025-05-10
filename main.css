@@ -1,0 +1,47 @@
+.navBar {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+.navBar-content {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1.5rem;
+}
+
+.navBar-hr {
+    border: 1px solid skyblue;
+    width: 100%;
+}
+
+.navBar-menu {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: larger;
+    color: #48688D;
+}
+
+.navBar-items {
+    display: flex;
+    width: 10%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.navBar-items:hover {
+    opacity: 0.5;
+}
+
+.gameDes-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #48688D;
+    height: 10rem;
+}
