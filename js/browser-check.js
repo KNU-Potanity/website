@@ -1,20 +1,32 @@
+/**
+ * 브라우저 기능 검사 및 게임 호환성 확인 스크립트
+ * 사용자 브라우저의 WebGPU 지원 여부와 하드웨어 가속 상태를 확인합니다.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     const gamePlayLink = document.getElementById('game-play-link');
     if (!gamePlayLink) return;
 
-    // 모달 닫기 함수 분리
+    /**
+     * 모달 창을 닫는 함수
+     */
     function closeModal() {
         const modal = document.getElementById('universal-modal');
         modal.style.display = 'none';
         document.body.style.overflow = '';
     }
 
-    // 모바일 환경 감지 함수
+    /**
+     * 모바일 기기 여부를 확인하는 함수
+     * @returns {boolean} 모바일 기기 여부
+     */
     function isMobile() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
-    // WebGL 소프트웨어 렌더러 여부 체크 함수
+    /**
+     * WebGL 소프트웨어 렌더링 여부를 확인하는 함수
+     * @returns {Object} 소프트웨어 렌더링 여부와 렌더러 정보
+     */
     function isWebGLSoftwareRenderer() {
         try {
             const canvas = document.createElement('canvas');
@@ -35,7 +47,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return { isSoftware: false, renderer: '' };
     }
 
-    // 템플릿을 활용한 모달 메시지 표시 함수
+    /**
+     * 지정된 템플릿을 모달 메시지 영역에 설정
+     * @param {Element} modalMsg - 메시지를 표시할 요소
+     * @param {string} templateId - 템플릿 ID
+     */
     function setModalTemplate(modalMsg, templateId) {
         modalMsg.textContent = '';
         const template = document.getElementById(templateId);
@@ -44,7 +60,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 단일 모달 템플릿 표시 함수
+    /**
+     * 모달 템플릿을 표시하는 함수
+     * @param {string} templateId - 템플릿 ID
+     * @param {Object} options - 모달 옵션 (텍스트, 콜백 등)
+     */
     function showModalTemplate(templateId, options = {}) {
         const modal = document.getElementById('universal-modal');
         const msg = document.getElementById('universal-modal-message');
@@ -52,14 +72,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const continueBtn = document.getElementById('universal-modal-continue');
         setModalTemplate(msg, templateId);
 
-        // 간단하게 렌더러 정보 표시
+        // 렌더러 정보 표시 (있는 경우)
         if (options.rendererInfo) {
             const rendererElement = document.createElement('p');
             rendererElement.textContent = options.rendererInfo;
             msg.appendChild(rendererElement);
         }
 
-        // 버튼 텍스트/동작
+        // 버튼 설정
         cancelBtn.textContent = options.cancelText || '창 닫기';
         cancelBtn.type = 'button';
         cancelBtn.onclick = (e) => {
@@ -68,22 +88,39 @@ document.addEventListener('DOMContentLoaded', function () {
             closeModal();
             if (options.onCancel) options.onCancel();
         };
+
+        // 계속하기 버튼 표시 여부
         if (options.continueText) {
             continueBtn.style.display = '';
             continueBtn.textContent = options.continueText;
             continueBtn.type = 'button';
-            continueBtn.onclick = () => { closeModal(); if (options.onContinue) options.onContinue(); };
+            continueBtn.onclick = () => {
+                closeModal();
+                if (options.onContinue) options.onContinue();
+            };
         } else {
             continueBtn.style.display = 'none';
         }
-        modal.onclick = function (e) { if (e.target === modal) closeModal(); };
+
+        // 모달 창 외부 클릭시 닫기
+        modal.onclick = function (e) {
+            if (e.target === modal) closeModal();
+        };
+
+        // ESC 키 누를 때 모달 닫기
         window.addEventListener('keydown', function escListener(e) {
-            if (e.key === 'Escape') { closeModal(); window.removeEventListener('keydown', escListener); }
+            if (e.key === 'Escape') {
+                closeModal();
+                window.removeEventListener('keydown', escListener);
+            }
         });
+
+        // 모달 표시
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
 
+    // 게임 플레이 버튼 클릭 이벤트
     gamePlayLink.addEventListener('click', async function (event) {
         event.preventDefault();
         let webgpuSupported = !!navigator.gpu;
@@ -91,11 +128,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const mobile = isMobile();
         const webglInfo = isWebGLSoftwareRenderer();
 
+        // WebGPU 어댑터 요청 (지원되는 경우)
         if (webgpuSupported) {
             try {
                 webgpuAdapter = await navigator.gpu.requestAdapter();
             } catch (e) { }
         }
+
+        // 브라우저 호환성 검사 및 안내
         // 분기: 우선순위대로 안내
         if (!webgpuSupported) {
             // WebGPU 미지원: 상세 안내
