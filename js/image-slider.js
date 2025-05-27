@@ -1,8 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // 모든 이미지 슬라이더 초기화
-    const sliders = document.querySelectorAll('.image-slider');
+    // 동적 이미지 로딩이 완료된 후 슬라이더를 초기화하는 함수
+    function initSliders() {
+        // 모든 이미지 슬라이더 초기화
+        const sliders = document.querySelectorAll('.image-slider');
+        sliders.forEach(initializeSlider);
+    }
 
-    sliders.forEach(initializeSlider);
+    // 동적 이미지 로딩 완료 이벤트 리스너
+    document.addEventListener('imagesLoaded', initSliders);
+
+    // 혹시 이미지 로드 이벤트가 발생하지 않을 경우를 대비한 대체 타이머
+    // (이미지가 아예 없거나 로드 실패한 경우에도 슬라이더 초기화)
+    const fallbackTimer = setTimeout(initSliders, 3000); // 3초 후 실행
+
+    // 이미지 로드 이벤트가 발생하면 대체 타이머 취소
+    document.addEventListener('imagesLoaded', () => {
+        clearTimeout(fallbackTimer);
+    });
 
     function initializeSlider(slider) {
         const container = slider.querySelector('.slider-container');
@@ -15,8 +29,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (images.length <= 1) {
             prevBtn.style.display = 'none';
             nextBtn.style.display = 'none';
+            dotsContainer.style.display = 'none';
             return;
         }
+
+        // 이전 도트 제거
+        dotsContainer.innerHTML = '';
 
         // 도트 생성
         images.forEach((_, index) => {

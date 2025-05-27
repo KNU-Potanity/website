@@ -1,89 +1,104 @@
 /**
  * 미니게임 이미지 슬라이더를 동적으로 로드하는 스크립트
+ * 각 미니게임의 이미지를 순차적으로 로드하고, 모두 완료되면 이벤트를 발생시킵니다.
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    // 각 미니게임 슬라이더 컨테이너를 찾아서 처리
     const minigameItems = document.querySelectorAll('.minigame-item');
+    const totalMinigames = minigameItems.length;
+    let completedMinigames = 0;
 
-    minigameItems.forEach((item, index) => {
-        const gameIndex = index + 1; // 미니게임 번호 (1부터 시작)
+    // 각 미니게임 아이템에 대해 이미지 로딩 처리
+    minigameItems.forEach(loadMinigameImages);
+
+    /**
+     * 미니게임 이미지 로딩 함수
+     * @param {Element} item - 미니게임 아이템 요소
+     * @param {number} index - 미니게임 인덱스
+     */
+    function loadMinigameImages(item, index) {
+        const gameNumber = index + 1;
         const sliderContainer = item.querySelector('.slider-container');
 
         if (!sliderContainer) return;
 
-        // 슬라이더 컨테이너를 비우고 동적으로 이미지 로드
+        // 슬라이더 컨테이너 초기화
         sliderContainer.innerHTML = '';
 
-        // 이미지 로드 최대 시도 횟수
-        const maxImages = 10;
-        let loadedImages = 0;
+        // 미니게임 이미지 로딩 시작
+        loadImagesSequentially(gameNumber, sliderContainer, onMinigameComplete);
+    }
 
-        // 이미지 로드 시도
-        for (let i = 1; i <= maxImages; i++) {
-            const imgPath = `images/minigame${gameIndex}-${i}.png`;
+    /**
+     * 이미지를 순차적으로 로딩하는 함수
+     * @param {number} gameNumber - 미니게임 번호
+     * @param {Element} container - 이미지를 추가할 컨테이너
+     * @param {Function} onComplete - 로딩 완료 시 호출할 콜백
+     */
+    function loadImagesSequentially(gameNumber, container, onComplete) {
+        const MAX_IMAGES = 10;  // 최대 이미지 시도 개수
+        let pendingImages = MAX_IMAGES;
+        let loadedCount = 0;
 
-            // 이미지 존재 여부 확인
+        // 각 이미지 로드 시도
+        for (let i = 1; i <= MAX_IMAGES; i++) {
+            loadImage(
+                `images/minigame${gameNumber}-${i}.png`,
+                `미니게임 ${gameNumber} 이미지 ${i}`,
+                i === 1,  // 첫 번째 이미지만 active 클래스 추가
+                onImageLoad
+            );
+        }
+
+        /**
+         * 단일 이미지 로드 함수
+         * @param {string} src - 이미지 경로
+         * @param {string} alt - 이미지 대체 텍스트
+         * @param {boolean} isActive - active 클래스 적용 여부
+         * @param {Function} callback - 로드 완료 시 콜백
+         */
+        function loadImage(src, alt, isActive, callback) {
             const img = new Image();
-            img.src = imgPath;
-            img.alt = `미니게임 ${gameIndex} 이미지 ${i}`;
-            img.className = i === 1 ? 'active' : ''; // 첫 번째 이미지는 활성화
+            img.src = src;
+            img.alt = alt;
+            if (isActive) img.className = 'active';
 
             img.onload = function () {
-                // 이미지가 성공적으로 로드됨
-                sliderContainer.appendChild(img);
-                loadedImages++;
-
-                // 이미지가 로드된 후 슬라이더 닷 업데이트
-                if (i === 1 || i === maxImages || this.complete) {
-                    updateSliderDots(item);
-                }
+                container.appendChild(img);
+                loadedCount++;
+                callback(true);
             };
 
             img.onerror = function () {
-                // 해당 번호의 이미지가 없으면 제거
-                this.remove();
+                callback(false);
             };
         }
-    });
-});
 
-/**
- * 슬라이더 닷을 업데이트하는 함수
- */
-function updateSliderDots(minigameItem) {
-    const sliderContainer = minigameItem.querySelector('.slider-container');
-    const sliderDots = minigameItem.querySelector('.slider-dots');
+        /**
+         * 이미지 로드 결과 처리 콜백
+         * @param {boolean} success - 로드 성공 여부
+         */
+        function onImageLoad(success) {
+            pendingImages--;
 
-    if (!sliderContainer || !sliderDots) return;
-
-    // 모든 이미지가 로드된 후에 닷 업데이트
-    const images = sliderContainer.querySelectorAll('img');
-    if (!images.length) return;
-
-    // 닷 컨테이너 비우기
-    sliderDots.innerHTML = '';
-
-    // 각 이미지에 대한 닷 생성
-    images.forEach((img, index) => {
-        const dot = document.createElement('span');
-        dot.className = 'dot';
-        if (img.classList.contains('active')) {
-            dot.classList.add('active');
+            // 모든 이미지 요청이 완료된 경우
+            if (pendingImages === 0) {
+                onComplete(loadedCount > 0);
+            }
         }
+    }
 
-        // 닷 클릭 이벤트 처리
-        dot.addEventListener('click', function () {
-            // 모든 이미지 비활성화
-            images.forEach(image => image.classList.remove('active'));
-            // 모든 닷 비활성화
-            sliderDots.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    /**
+     * 미니게임 이미지 로딩 완료 처리
+     * @param {boolean} hasImages - 로드된 이미지가 있는지 여부
+     */
+    function onMinigameComplete(hasImages) {
+        completedMinigames++;
 
-            // 선택한 이미지와 닷 활성화
-            images[index].classList.add('active');
-            this.classList.add('active');
-        });
-
-        sliderDots.appendChild(dot);
-    });
-}
+        // 모든 미니게임 이미지 로딩이 완료된 경우
+        if (completedMinigames === totalMinigames) {
+            // 이미지 로딩 완료 이벤트 발생
+            document.dispatchEvent(new Event('imagesLoaded'));
+        }
+    }
+});
