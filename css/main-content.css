@@ -86,8 +86,8 @@ body {
 .game-play-button {
     display: block;
     width: 100%;
-    max-width: 31.25rem;
-    /* 500px를 rem 단위로 변경 */
+    max-width: 60%;
+    /* 모든 화면에서 동일하게 60% 비율 적용 */
     margin: 0 auto;
     position: relative;
     transition: all var(--transition-normal);
@@ -137,7 +137,7 @@ body {
 @media (max-width: 768px) {
     .game-play-button {
         max-width: 80%;
-        /* 모바일에서도 충분히 크게 보이도록 설정 */
+        /* 모바일에서만 다른 비율(80%) 적용 */
     }
 }
 
