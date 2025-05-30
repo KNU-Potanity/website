@@ -70,7 +70,42 @@ async function checkBrowserCompatibility() {
         status.step = 'continueWithWebGL';
     }
 
+    // 브라우저 상태 표시 업데이트
+    updateBrowserStatusDisplay(status);
+
     return status;
+}
+
+// 브라우저 상태 화면에 표시
+function updateBrowserStatusDisplay(status) {
+    const webGPUStatusEl = document.getElementById('webgpu-status');
+    const hwAccelStatusEl = document.getElementById('hwaccel-status');
+
+    if (!webGPUStatusEl || !hwAccelStatusEl) return;
+
+    // WebGPU 상태 표시
+    if (status.hasWebGPU) {
+        webGPUStatusEl.textContent = 'WebGPU: 지원됨';
+        webGPUStatusEl.classList.add('supported');
+    } else {
+        webGPUStatusEl.textContent = 'WebGPU: 지원되지 않음';
+        webGPUStatusEl.classList.add('not-supported');
+    }
+
+    // 하드웨어 가속 상태 표시
+    if (status.isMobile) {
+        hwAccelStatusEl.textContent = '하드웨어 가속: 모바일(확인 생략)';
+        hwAccelStatusEl.classList.add('warning');
+    } else if (status.hasWebGPU && status.hasWebGPUAdapter) {
+        hwAccelStatusEl.textContent = '하드웨어 가속: 활성화됨';
+        hwAccelStatusEl.classList.add('supported');
+    } else if (status.hasWebGL && status.hasHWAccel) {
+        hwAccelStatusEl.textContent = '하드웨어 가속: 활성화됨(WebGL)';
+        hwAccelStatusEl.classList.add('supported');
+    } else {
+        hwAccelStatusEl.textContent = '하드웨어 가속: 비활성화됨';
+        hwAccelStatusEl.classList.add('not-supported');
+    }
 }
 
 // 하드웨어 가속 상태 확인 함수
@@ -100,6 +135,9 @@ async function checkHardwareAcceleration(status) {
         status.isCompatible = true;
         status.step = 'finished';
     }
+
+    // 상태 업데이트 후 화면에도 표시 갱신
+    updateBrowserStatusDisplay(status);
 
     return status;
 }
@@ -155,8 +193,11 @@ function hideModal() {
 }
 
 // 페이지 로드 시 초기화 작업
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     console.log('브라우저 호환성 체크 스크립트가 로드되었습니다.');
+
+    // 페이지 로드 시 바로 호환성 확인 (버튼 클릭 전에 상태 표시)
+    await checkBrowserCompatibility();
 
     // 게임 플레이 링크 이벤트 핸들러
     const gamePlayLink = document.getElementById('game-play-link');

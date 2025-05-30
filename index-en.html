@@ -64,7 +64,8 @@
                             projects during vacation</li>
                         <li>🕹️ Visiting game exhibitions, attending game shows, internal club game jams</li>
                         <li>🍕 Every <strong>first Wednesday</strong> and <strong>third Friday</strong> of the month is
-                            <b>Pizza Day</b>!</li>
+                            <b>Pizza Day</b>!
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -73,10 +74,18 @@
         <section id="game-play" class="section game-play-button-container">
             <h2>Game Play</h2>
             <p>Click the button below to instantly enjoy the games we've made in your web browser!</p>
+
+            <!-- 브라우저 호환성 상태 표시 -->
+            <div id="browser-status" class="browser-status">
+                <span id="webgpu-status" class="status-badge">WebGPU: 확인 중...</span>
+                <span id="hwaccel-status" class="status-badge">하드웨어 가속: 확인 중...</span>
+            </div>
+
             <a href="game/index.html" class="game-play-button" id="game-play-link" target="_blank">
                 <img src="images/game-play-button.png" alt="Game Play Start Button Image">
             </a>
         </section>
+
         <section id="minigames" class="section minigames-section">
             <h2>Potanity Minigame Introduction</h2>
             <p>Discover minigames developed by Potanity!</p>
@@ -303,7 +312,6 @@
 
     <script src="js/theme.js"></script>
     <script src="js/browser-check.js"></script>
-    <script src="js/game-button-handler.js"></script>
     <script src="js/dynamic-image-loader.js"></script>
     <script src="js/image-slider.js"></script>
     <script>

@@ -69,6 +69,13 @@
         <section id="game-play" class="section game-play-button-container">
             <h2>게임 플레이</h2>
             <p>아래 버튼을 클릭하여 저희가 만든 게임을 웹브라우저에서 즉시 즐겨보세요!</p>
+
+            <!-- 브라우저 호환성 상태 표시 -->
+            <div id="browser-status" class="browser-status">
+                <span id="webgpu-status" class="status-badge">WebGPU: 확인 중...</span>
+                <span id="hwaccel-status" class="status-badge">하드웨어 가속: 확인 중...</span>
+            </div>
+
             <a href="game/index.html" class="game-play-button" id="game-play-link" target="_blank">
                 <img src="images/game-play-button.png" alt="게임 플레이 시작 버튼 이미지">
             </a>
@@ -283,19 +290,6 @@
             (예: Chrome - 설정 > 시스템 > 가능한 경우 하드웨어 가속 사용)<br>
             <span class="text-danger">※ Firefox 브라우저에서는 하드웨어 가속 상태와 관계없이 이 경고창이 계속 뜰 수 있습니다.</span>
         </div>
-    </template>
-
-    <!-- 브라우저 미지원 템플릿 -->
-    <template id="browser-not-supported-template">
-        <strong>브라우저 호환성 문제</strong>
-        <div class="webgpu-warning-alert">이 게임을 실행하기 위한 그래픽 기술이 지원되지 않습니다!</div>
-        <div>최신 브라우저로 업데이트하거나 다른 브라우저를 사용해 주세요.</div>
-    </template>
-
-    <!-- 브라우저 오류 템플릿 -->
-    <template id="browser-error-template">
-        <strong>호환성 확인 오류</strong>
-        <div>브라우저 기능을 확인하는 중 문제가 발생했습니다. 다른 브라우저를 사용해 보세요.</div>
     </template>
 
     <script src="js/theme.js"></script>
