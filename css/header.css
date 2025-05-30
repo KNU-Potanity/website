@@ -1,39 +1,110 @@
-/* 헤더 전체 영역의 배경, 텍스트 색상, 정렬, 여백 등 */
+/* 헤더 전체 영역 스타일링 */
 header {
-    background-color: var(--header-bg);
+    background: var(--header-bg);
     color: var(--header-text);
-    padding: 1em 0;
+    padding: 1.5em 2em;
     text-align: center;
     position: relative;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-normal);
+    z-index: 100;
 }
 
-/* 헤더 내부 컨트롤(언어/테마 스위치 등)의 flex 중앙 정렬 */
+/* 헤더 로고/제목 스타일링 */
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-shadow: var(--text-shadow);
+    background: linear-gradient(to right, #ffffff, #e0e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulse 3s infinite alternate;
+}
+
+/* 로고 애니메이션 */
+@keyframes pulse {
+    0% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* 헤더 내부 컨트롤의 flex 중앙 정렬 */
 .header-controls-center {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 0.5em;
 }
 
-/* 언어 전환 네비게이션의 폰트, 여백 등 */
+/* 언어 전환 네비게이션 */
 .lang-switch {
     position: static;
     font-size: 1rem;
-    margin-top: 0.2em;
+    margin-top: 0.5em;
+    padding: 0.4em 0.8em;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--border-radius-md);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
-/* 언어 전환 링크의 색상, 굵기, 밑줄 제거 등 */
+/* 언어 전환 링크 */
 .lang-switch a {
-    color: var(--header-text);
+    color: var(--nav-link-text);
     text-decoration: none;
-    margin: 0 0.125rem;
-    /* 2px를 rem 단위로 변경 */
-    font-weight: bold;
-    transition: color 0.2s;
+    margin: 0 0.5rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    position: relative;
+    padding: 0.2em 0.4em;
 }
 
-/* 언어 전환 링크에 마우스 오버 시 색상 강조 */
+/* 링크 호버 효과 */
 .lang-switch a:hover {
-    color: var(--button-hover-border);
+    color: var(--warning);
+    transform: translateY(-2px);
+}
+
+/* 선택된 언어 링크에 밑줄 효과 */
+.lang-switch a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--warning);
+    transition: width var(--transition-fast);
+}
+
+.lang-switch a:hover::after {
+    width: 100%;
+}
+
+/* 반응형 디자인 */
+@media (min-width: 768px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5em 5%;
+        text-align: left;
+    }
+
+    .header-controls-center {
+        margin-top: 0;
+    }
+
+    header h1 {
+        font-size: 2.8rem;
+    }
 }

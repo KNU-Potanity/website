@@ -1,269 +1,221 @@
 /* main-content.css: 본문(컨테이너, 섹션, 게임, 미니게임, 연혁, 연락처, 푸터) 관련 CSS를 통합한 파일 */
 
 /* ===== 전체 테마 ===== */
-/* 전체 페이지의 기본 폰트, 배경, 텍스트 색상 등 전역 스타일 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--page-bg);
     color: var(--page-text);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+    line-height: 1.6;
 }
 
 /* ===== 컨테이너 및 섹션 ===== */
-/* 본문 영역의 최대 너비, 가운데 정렬, 배경 등 레이아웃 컨테이너 */
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    padding: 2vw;
+    width: 85%;
+    max-width: 1400px;
+    margin: 2rem auto 4rem;
+    padding: 2rem;
     background-color: var(--container-bg);
-    transition: background-color 0.3s ease;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-normal);
+    overflow: hidden;
 }
 
-/* 각 주요 구역(소개, 활동 등)의 구분 및 하단 여백, 구분선 */
 .section {
-    margin-bottom: 2vw;
-    padding-bottom: 2vw;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
     border-bottom: 1px solid var(--section-border);
-    transition: border-color 0.3s ease;
+    transition: all var(--transition-normal);
+    animation: fadeIn 0.6s ease-out;
 }
 
-/* 섹션 제목의 색상, 하단 테두리, 여백 등 스타일 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
 .section h2 {
     color: var(--section-title-text);
-    border-bottom: 0.2vw solid var(--section-title-border);
-    padding-bottom: 1vw;
-    margin-bottom: 2vw;
-    transition: color 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    font-size: 2rem;
+    font-weight: 700;
+    padding-bottom: 0.75rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+    transition: all var(--transition-normal);
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    transition: all var(--transition-normal);
 }
 
 /* ===== 게임 플레이 버튼 및 미니게임 ===== */
-/* 게임 플레이 버튼 영역의 중앙 정렬 및 여백 */
 .game-play-button-container {
     text-align: center;
-    margin: 3vw 0;
+    margin: 3rem 0;
 }
 
-/* 게임 플레이 버튼(이미지 링크)의 크기, 정렬 */
+.game-play-button-container p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
 .game-play-button {
     display: block;
     width: 100%;
-    max-width: 50vw;
-    min-width: 20vw;
+    max-width: 350px;
     margin: 0 auto;
+    position: relative;
+    transition: all var(--transition-normal);
 }
 
-/* 게임 플레이 버튼 이미지의 크기, 테두리, 마우스 오버 효과 */
 .game-play-button img {
     width: 100%;
     height: auto;
     cursor: pointer;
-    border: 0.3vw solid transparent;
-    border-radius: 1vw;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
-    box-sizing: border-box;
-    display: block;
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-fast);
+    box-shadow: var(--box-shadow);
 }
 
-/* 게임 플레이 버튼 이미지에 마우스 오버 시 확대, 그림자, 테두리 강조 */
-.game-play-button img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px var(--button-hover-shadow);
-    border-color: var(--button-hover-border);
+.game-play-button:hover img {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.game-play-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--gradient-accent);
+    border-radius: var(--border-radius-md);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.5s ease;
+}
+
+.game-play-button:hover::before {
+    width: 110%;
+    height: 110%;
+    opacity: 0.8;
 }
 
 /* ===== 미니게임 리스트 구조화 ===== */
-/* 기존 카드형 레이아웃은 사용하지 않으며 대신 수직 리스트 사용 */
-/* 
-.minigame-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2vw;
-    list-style: none;
-    padding: 0;
-    margin: 0 0 2vw 0;
-    justify-content: center;
-}
-
-.minigame-card {
-    flex: 1 1 250px;
-    max-width: 320px;
-    background: var(--card-bg);
-    border: 0.1vw solid var(--card-border);
-    border-radius: 0.8vw;
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.04); /* 2px 8px를 rem 단위로 변경 */
-/*  padding: 1vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: background 0.3s, border-color 0.3s;
-}
-*/
-
-.minigame-card figure {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.minigame-card img {
-    max-width: 100%;
-    border-radius: 0.5vw;
-    border: 0.1vw solid var(--card-image-border);
-    margin-bottom: 0.8vw;
-    transition: border-color 0.3s;
-}
-
-.minigame-card figcaption {
-    font-size: 1.05em;
-    color: var(--card-title-text);
-    text-align: center;
-    margin-top: 0.2vw;
-}
-
-/* 새로운 수직 미니게임 리스트 스타일 */
 .minigame-list-vertical {
     display: flex;
     flex-direction: column;
-    gap: 3vw;
-    margin: 2vw 0;
+    gap: 3rem;
+    margin: 2rem 0;
 }
 
 .minigame-item {
     display: flex;
     flex-direction: column;
-    gap: 1vw;
-    padding-bottom: 2vw;
+    gap: 1.5rem;
+    padding-bottom: 2.5rem;
     border-bottom: 1px solid var(--section-border);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
 }
 
-/* 중간 화면 이상에서는 이미지와 내용을 가로로 배치 */
-@media (min-width: 48rem) {
-
-    /* 768px를 48rem으로 변경 */
-    .minigame-item {
-        flex-direction: row;
-        align-items: flex-start;
-    }
-
-    .minigame-item img {
-        width: 40%;
-        max-width: 40%;
-        /* 450px를 50%로 변경 */
-        object-fit: cover;
-    }
-
-    .minigame-content {
-        flex: 1;
-        margin-left: 2vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 12rem;
-        /* 200px를 12rem으로 변경 - 글꼴 크기 기준으로 상대적인 값 */
-    }
+.minigame-item:last-child {
+    border-bottom: none;
 }
 
-/* 작은 화면에서는 수직으로 배치 */
-.minigame-item img {
-    border-radius: 0.5vw;
-    border: 0.1vw solid var(--card-image-border);
-    max-width: 100%;
-    height: auto;
+.minigame-item:hover .image-slider {
+    transform: translateY(-5px);
+    box-shadow: var(--card-box-shadow);
 }
 
 .minigame-content h3 {
     margin-top: 0;
-    color: var(--section-title-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--card-title-text);
+    transition: all var(--transition-normal);
+    display: inline-block;
+    position: relative;
+}
+
+.minigame-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-accent);
+    transition: width var(--transition-normal);
+}
+
+.minigame-item:hover .minigame-content h3::after {
+    width: 100%;
 }
 
 .minigame-content p {
     margin-bottom: 0;
-    line-height: 1.6;
+    line-height: 1.8;
+    transition: all var(--transition-normal);
 }
 
-/* 미니게임 섹션은 중앙 정렬 해제, 좌측 정렬로 변경 */
 .minigames-section {
     text-align: left;
 }
 
-/* 미니게임 섹션 제목만 중앙 정렬 유지 */
 .minigames-section h2 {
     text-align: center;
 }
 
-/* 미니게임 섹션의 소개 텍스트는 중앙 정렬 */
 .minigames-section>p {
     text-align: center;
-    margin-bottom: 2vw;
+    margin-bottom: 3rem;
+    font-size: 1.2rem;
 }
 
-/* ===== 연혁(History) ===== */
-/* 연혁 섹션의 리스트 마커(사각형), 들여쓰기 */
-#history ul {
-    list-style-type: square;
-    padding-left: 2vw;
-}
-
-/* ===== 연락처(Contact) ===== */
-/* 연락처 섹션의 문단 줄 간격 */
-#contact p {
-    line-height: 1.8;
-}
-
-/* 연락처 링크의 색상, 밑줄 제거, 전환 효과 */
-#contact a {
-    color: var(--link-text);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-/* 연락처 링크에 마우스 오버 시 밑줄 표시 */
-#contact a:hover {
-    text-decoration: underline;
-}
-
-/* ===== 푸터(Footer) ===== */
-/* 푸터 영역의 중앙 정렬, 배경색, 텍스트 색상, 여백 */
-footer {
-    text-align: center;
-    padding: 2vw;
-    background-color: var(--footer-bg);
-    color: var(--footer-text);
-    margin-top: 3vw;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* ===== 유틸리티 클래스 ===== */
-/* 경고, 주의 등 강조 텍스트(빨간색) */
-.text-danger {
-    color: #d00 !important;
-}
-
-/* 약간 크게 표시할 텍스트 */
-.text-large {
-    font-size: 1.1em !important;
-}
-
-/* ===== 이미지 슬라이더 스타일 ===== */
+/* ===== 이미지 슬라이더 개선 ===== */
 .image-slider {
     position: relative;
     width: 100%;
     overflow: hidden;
-    border-radius: 0.5vw;
-    border: 0.1vw solid var(--card-image-border);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-normal);
 }
 
 .slider-container {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 75%;
-    /* 4:3 비율로 변경 (75%)하여 모바일에서 더 잘 보이게 함 */
-    background-color: #000;
+    padding-bottom: 62.5%;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .slider-container img {
@@ -273,102 +225,314 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    /* contain으로 설정하여 이미지 비율 유지 및 잘리지 않게 함 */
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     border: none;
     max-height: 100%;
-    /* 최대 높이 제한 */
 }
 
 .slider-container img.active {
     opacity: 1;
+    animation: zoomIn 0.5s ease-in-out;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1.05);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
 
 .slider-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     color: white;
     border: none;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all var(--transition-fast);
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    opacity: 0.7;
 }
 
 .slider-nav:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
 }
 
 .slider-nav.prev {
-    left: 0.5rem;
+    left: 1rem;
 }
 
 .slider-nav.next {
-    right: 0.5rem;
+    right: 1rem;
 }
 
 .slider-dots {
     position: absolute;
-    bottom: 0.5rem;
+    bottom: 1rem;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.8rem;
     z-index: 2;
 }
 
 .slider-dot {
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.75rem;
+    height: 0.75rem;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all var(--transition-normal);
 }
 
 .slider-dot.active {
     background-color: white;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
-/* 중간 화면 이상에서는 이미지 슬라이더와 내용을 가로로 배치 */
-@media (min-width: 48rem) {
+/* ===== 연혁(History) ===== */
+#history ul {
+    list-style-type: none;
+    padding-left: 0.5rem;
+    position: relative;
+}
+
+#history ul li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1.2rem;
+    transition: all var(--transition-fast);
+}
+
+#history ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+#history ul li:hover::before {
+    transform: scale(1.3);
+    box-shadow: var(--highlight-glow);
+}
+
+#history ul li strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    color: var(--card-title-text);
+}
+
+#history ul li ul {
+    margin-top: 0.8rem;
+    border-left: 2px dashed var(--section-border);
+    margin-left: 0.5rem;
+    padding-left: 1.5rem;
+}
+
+#history ul li ul li {
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+#history ul li ul li::before {
+    width: 0.6rem;
+    height: 0.6rem;
+    top: 0.5rem;
+}
+
+/* ===== 연락처(Contact) ===== */
+#contact {
+    border-radius: var(--border-radius-md);
+    padding: 2rem;
+    background: linear-gradient(145deg, var(--card-bg), var(--container-bg));
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-normal);
+}
+
+#contact p {
+    line-height: 2;
+    margin-bottom: 1.5rem;
+}
+
+#contact a {
+    color: var(--link-text);
+    text-decoration: none;
+    position: relative;
+    font-weight: 500;
+    padding: 0 0.2rem;
+    transition: all var(--transition-fast);
+}
+
+#contact a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-accent);
+    transition: width var(--transition-fast);
+}
+
+#contact a:hover {
+    color: var(--secondary);
+}
+
+#contact a:hover::after {
+    width: 100%;
+}
+
+#contact strong {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--section-title-text);
+}
+
+/* ===== 푸터(Footer) ===== */
+footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    margin-top: 0;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-accent);
+    z-index: 1;
+}
+
+footer p {
+    position: relative;
+    z-index: 1;
+    font-size: 1rem;
+    opacity: 0.8;
+    transition: opacity var(--transition-normal);
+}
+
+footer:hover p {
+    opacity: 1;
+}
+
+/* ===== 유틸리티 클래스 ===== */
+.text-danger {
+    color: var(--danger) !important;
+    font-weight: 600;
+}
+
+.text-large {
+    font-size: 1.3em !important;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ===== 반응형 디자인 개선 ===== */
+@media (min-width: 768px) {
     .minigame-item {
         flex-direction: row;
         align-items: flex-start;
     }
 
     .image-slider {
-        width: 40%;
+        width: 45%;
+        flex-shrink: 0;
     }
 
     .slider-container {
         padding-bottom: 56.25%;
-        /* 더 큰 화면에서는 16:9 비율로 되돌림 */
     }
 
     .minigame-content {
         flex: 1;
-        margin-left: 2vw;
+        margin-left: 2rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         min-height: 12rem;
     }
+
+    .section h2 {
+        font-size: 2.2rem;
+    }
 }
 
-/* 작은 화면에서 슬라이더 네비게이션 버튼 크기 조정 */
-@media (max-width: 48rem) {
+@media (max-width: 767px) {
+    .container {
+        width: 92%;
+        padding: 1.5rem;
+        margin: 1rem auto 2rem;
+    }
+
+    .section {
+        margin-bottom: 3rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .slider-nav {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+
+    .slider-container {
+        padding-bottom: 70%;
+    }
+
+    #contact {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+    }
+
     .slider-nav {
         width: 2rem;
         height: 2rem;
@@ -376,22 +540,28 @@ footer {
     }
 
     .slider-nav.prev {
-        left: 0.3rem;
+        left: 0.5rem;
     }
 
     .slider-nav.next {
-        right: 0.3rem;
+        right: 0.5rem;
     }
 
     .slider-dots {
-        bottom: 0.3rem;
+        bottom: 0.5rem;
+        gap: 0.5rem;
     }
-}
 
-/* 매우 작은 화면에서 추가 최적화 */
-@media (max-width: 30rem) {
-    .slider-container {
-        padding-bottom: 80%;
-        /* 더 작은 화면에서는 비율을 더 높게 설정 */
+    .slider-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+    }
+
+    .game-play-button-container p {
+        font-size: 1rem;
+    }
+
+    .minigame-content h3 {
+        font-size: 1.3rem;
     }
 }
