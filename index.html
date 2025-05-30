@@ -8,8 +8,17 @@
     <title>강원대학교 게임개발 중앙동아리 포테니티 홈페이지</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/main-content.css">
     <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/container-sections.css">
+    <link rel="stylesheet" href="css/game-button.css">
+    <link rel="stylesheet" href="css/minigame-list.css">
+    <link rel="stylesheet" href="css/image-slider.css">
+    <link rel="stylesheet" href="css/history.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -276,9 +285,21 @@
         </div>
     </template>
 
+    <!-- 브라우저 미지원 템플릿 -->
+    <template id="browser-not-supported-template">
+        <strong>브라우저 호환성 문제</strong>
+        <div class="webgpu-warning-alert">이 게임을 실행하기 위한 그래픽 기술이 지원되지 않습니다!</div>
+        <div>최신 브라우저로 업데이트하거나 다른 브라우저를 사용해 주세요.</div>
+    </template>
+
+    <!-- 브라우저 오류 템플릿 -->
+    <template id="browser-error-template">
+        <strong>호환성 확인 오류</strong>
+        <div>브라우저 기능을 확인하는 중 문제가 발생했습니다. 다른 브라우저를 사용해 보세요.</div>
+    </template>
+
     <script src="js/theme.js"></script>
     <script src="js/browser-check.js"></script>
-    <script src="js/game-button-handler.js"></script>
     <script src="js/dynamic-image-loader.js"></script>
     <script src="js/image-slider.js"></script>
     <script>

@@ -1,0 +1,74 @@
+/**
+ * game-button.css
+ * 
+ * 게임 플레이 버튼 - 메인 게임 플레이 링크 및 버튼 효과
+ */
+
+.game-play-button-container {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.game-play-button-container p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* 게임 플레이 버튼 - 모든 화면에서 60% 너비로 표시, 모바일은 예외 */
+.game-play-button {
+    display: block;
+    width: 100%;
+    max-width: 60%;
+    /* 모든 화면에서 동일하게 60% 비율 적용 */
+    margin: 0 auto;
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+/* 게임 플레이 버튼 이미지 스타일링 */
+.game-play-button img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-fast);
+    box-shadow: var(--box-shadow);
+    border: 0.1875rem solid transparent;
+}
+
+/* 게임 플레이 버튼 호버 효과 */
+.game-play-button:hover img {
+    transform: translateY(-0.5rem) scale(1.03);
+    box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.25);
+    border-color: var(--primary);
+}
+
+/* 게임 플레이 버튼 배경 효과용 가상 요소 */
+.game-play-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--gradient-accent);
+    border-radius: var(--border-radius-md);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.5s ease;
+}
+
+.game-play-button:hover::before {
+    width: 110%;
+    height: 110%;
+    opacity: 0.8;
+}
+
+/* 작은 화면에서 게임 플레이 버튼 크기 조정 - 더 큰 비율로 표시 */
+@media (max-width: 768px) {
+    .game-play-button {
+        max-width: 80%;
+        /* 모바일에서만 다른 비율(80%) 적용 */
+    }
+}

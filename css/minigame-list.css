@@ -1,0 +1,83 @@
+/**
+ * minigame-list.css
+ * 
+ * 미니게임 리스트 - 미니게임 목록 및 항목 스타일
+ */
+
+.minigame-list-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+/* 미니게임 항목 - 개별 미니게임 카드 스타일 */
+.minigame-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--section-border);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.minigame-item:last-child {
+    border-bottom: none;
+}
+
+/* 미니게임 항목 호버 효과 */
+.minigame-item:hover .image-slider {
+    transform: translateY(-5px);
+    box-shadow: var(--card-box-shadow);
+}
+
+/* 미니게임 제목 스타일링 */
+.minigame-content h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--card-title-text);
+    transition: all var(--transition-normal);
+    display: inline-block;
+    position: relative;
+}
+
+/* 미니게임 제목 하단 강조선(호버 시 나타남) */
+.minigame-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -0.3125rem;
+    left: 0;
+    width: 0;
+    height: 0.125rem;
+    background: var(--gradient-accent);
+    transition: width var(--transition-normal);
+}
+
+.minigame-item:hover .minigame-content h3::after {
+    width: 100%;
+}
+
+/* 미니게임 설명 텍스트 스타일 */
+.minigame-content p {
+    margin-bottom: 0;
+    line-height: 1.8;
+    transition: all var(--transition-normal);
+}
+
+/* 미니게임 섹션 레이아웃 및 정렬 */
+.minigames-section {
+    text-align: left;
+}
+
+.minigames-section h2 {
+    text-align: center;
+}
+
+.minigames-section>p {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 1.2rem;
+}

@@ -1,0 +1,112 @@
+/**
+ * responsive.css
+ * 
+ * 반응형 디자인 - 화면 크기별 레이아웃 최적화
+ */
+
+/* 태블릿 이상 크기 화면 (768px 이상) */
+@media (min-width: 768px) {
+    .minigame-item {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .image-slider {
+        width: 45%;
+        flex-shrink: 0;
+    }
+
+    .slider-container {
+        padding-bottom: 56.25%;
+    }
+
+    .minigame-content {
+        flex: 1;
+        margin-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 12rem;
+    }
+
+    .section h2 {
+        font-size: 2.2rem;
+    }
+}
+
+/* 모바일 화면 (767px 이하) */
+@media (max-width: 767px) {
+    .container {
+        width: 92%;
+        padding: 1.5rem;
+        margin: 1rem auto 2rem;
+    }
+
+    .section {
+        margin-bottom: 3rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .slider-nav {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+
+    .slider-container {
+        padding-bottom: 70%;
+    }
+
+    #contact {
+        padding: 1.5rem;
+    }
+}
+
+/* 작은 모바일 화면 (480px 이하) */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+    }
+
+    .slider-nav {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.9rem;
+    }
+
+    .slider-nav.prev {
+        left: 0.5rem;
+    }
+
+    .slider-nav.next {
+        right: 0.5rem;
+    }
+
+    .slider-dots {
+        bottom: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .slider-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+    }
+
+    .game-play-button-container p {
+        font-size: 1rem;
+    }
+
+    .minigame-content h3 {
+        font-size: 1.3rem;
+    }
+}

@@ -1,66 +1,134 @@
 /**
- * 브라우저 호환성 체크 및 WebGPU 지원 확인 스크립트
+ * 브라우저 호환성 체크 및 WebGPU/WebGL 지원 확인 스크립트
  */
 
 // 브라우저 호환성 체크 함수
-function checkBrowserCompatibility() {
-    let isCompatible = true;
-    let warningContent = '';
+async function checkBrowserCompatibility() {
+    // 기본 상태 객체 정의
+    let status = {
+        hasWebGPU: false,
+        hasWebGPUAdapter: false,
+        hasWebGL: false,
+        hasHWAccel: false,
+        isCompatible: false,
+        templateId: null,
+        continueText: '',
+        isMobile: false,
+        step: 'checkAPI' // 초기 단계: API 체크 (WebGPU vs WebGL)
+    };
 
-    // WebGPU 지원 확인
-    const hasWebGPU = 'gpu' in navigator;
+    // 모바일 기기 확인
+    status.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    if (!hasWebGPU) {
-        isCompatible = false;
-        const template = document.getElementById('webgpu-not-supported-template');
-        warningContent = template ? template.innerHTML : '이 게임은 WebGPU를 사용하며, 현재 브라우저에서는 지원되지 않습니다.';
-    }
+    // 1단계: WebGPU 또는 WebGL 지원 여부 확인
+    status.hasWebGPU = 'gpu' in navigator;
 
-    // WebGL 하드웨어 가속 확인 (WebGPU가 지원되지 않을 경우)
-    if (!hasWebGPU) {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    status.hasWebGL = !!gl;
+
+    // 2단계: 하드웨어 가속 확인 준비
+    if (status.hasWebGPU) {
         try {
-            const canvas = document.createElement('canvas');
-            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-
-            if (gl) {
-                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-                if (debugInfo) {
-                    const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-                    // 소프트웨어 렌더러 감지 (하드웨어 가속이 꺼져있는 경우)
-                    if (renderer.includes('SwiftShader') ||
-                        renderer.includes('llvmpipe') ||
-                        renderer.includes('Software') ||
-                        renderer.includes('Mesa')) {
-
-                        isCompatible = false;
-                        const template = document.getElementById('webgl-no-hwaccel-template');
-                        warningContent = template ? template.innerHTML : 'WebGL 하드웨어 가속이 비활성화되어 있습니다.';
-                    }
-                }
-            }
+            const adapter = await navigator.gpu.requestAdapter();
+            status.hasWebGPUAdapter = !!adapter;
+            if (adapter) adapter.destroy();
         } catch (e) {
-            console.error('WebGL 상태 확인 중 오류:', e);
+            console.error('WebGPU 어댑터 확인 중 오류:', e);
+            status.hasWebGPUAdapter = false;
         }
     }
 
-    return {
-        isCompatible,
-        warningContent
-    };
+    if (status.hasWebGL && gl) {
+        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+        if (debugInfo) {
+            const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+            status.hasHWAccel = !(
+                renderer.includes('SwiftShader') ||
+                renderer.includes('llvmpipe') ||
+                renderer.includes('Software') ||
+                renderer.includes('Mesa')
+            );
+        }
+    }
+
+    // 첫 번째 단계: WebGPU vs WebGL 확인
+    if (!status.hasWebGPU && !status.hasWebGL) {
+        // 둘 다 지원하지 않는 경우
+        status.isCompatible = false;
+        status.templateId = 'browser-not-supported-template';
+        status.continueText = "그래도 시도하기";
+        status.step = 'finished';
+    } else if (status.hasWebGPU) {
+        // WebGPU 지원됨 - 하드웨어 가속 체크 단계로 진행
+        status.step = 'checkHWAccel';
+    } else {
+        // WebGL만 지원됨 - WebGPU 지원 안 됨 경고
+        status.isCompatible = false;
+        status.templateId = 'webgpu-not-supported-template';
+        status.continueText = "WebGL 모드로 계속하기";
+        status.step = 'continueWithWebGL';
+    }
+
+    return status;
 }
 
-// 모달 관련 함수들
-function showModal(content, continueCallback = null) {
+// 하드웨어 가속 상태 확인 함수
+async function checkHardwareAcceleration(status) {
+    // 모바일에서는 하드웨어 가속 체크 생략
+    if (status.isMobile) {
+        status.isCompatible = true;
+        status.step = 'finished';
+        return status;
+    }
+
+    // API에 따라 하드웨어 가속 체크
+    if (status.hasWebGPU && !status.hasWebGPUAdapter) {
+        // WebGPU는 지원하지만 하드웨어 가속 없음
+        status.isCompatible = false;
+        status.templateId = 'webgpu-no-adapter-template';
+        status.continueText = "하드웨어 가속 없이 계속하기";
+        status.step = 'finished';
+    } else if (status.hasWebGL && !status.hasHWAccel) {
+        // WebGL은 지원하지만 하드웨어 가속 없음
+        status.isCompatible = false;
+        status.templateId = 'webgl-no-hwaccel-template';
+        status.continueText = "하드웨어 가속 없이 계속하기";
+        status.step = 'finished';
+    } else {
+        // 하드웨어 가속 정상
+        status.isCompatible = true;
+        status.step = 'finished';
+    }
+
+    return status;
+}
+
+// 모달 표시 함수 - 템플릿 ID를 받아서 표시
+function showModal(templateId, continueCallback = null, buttonText = "계속하기") {
     const universalModal = document.getElementById('universal-modal');
     const modalMessage = document.getElementById('universal-modal-message');
     const modalContinueBtn = document.getElementById('universal-modal-continue');
+    const modalCancelBtn = document.getElementById('universal-modal-cancel');
 
-    // 모달 내용 설정
-    modalMessage.innerHTML = content;
+    if (!universalModal || !modalMessage || !modalContinueBtn || !modalCancelBtn) {
+        console.error('모달 요소를 찾을 수 없습니다.');
+        return;
+    }
+
+    // 템플릿에서 내용 가져오기
+    const template = document.getElementById(templateId);
+    if (template) {
+        modalMessage.innerHTML = template.innerHTML;
+    } else {
+        console.error('템플릿을 찾을 수 없음:', templateId);
+        modalMessage.textContent = '브라우저 호환성 문제가 발생했습니다.';
+    }
 
     // 계속 버튼 설정
     if (continueCallback) {
         modalContinueBtn.style.display = 'block';
+        modalContinueBtn.textContent = buttonText;
         modalContinueBtn.onclick = () => {
             hideModal();
             continueCallback();
@@ -72,12 +140,18 @@ function showModal(content, continueCallback = null) {
     // 모달 표시
     universalModal.style.display = 'flex';
     document.body.classList.add('modal-open');
+
+    // 취소 버튼에 포커스
+    modalCancelBtn.focus();
 }
 
+// 모달을 숨기는 함수
 function hideModal() {
     const universalModal = document.getElementById('universal-modal');
-    universalModal.style.display = 'none';
-    document.body.classList.remove('modal-open');
+    if (universalModal) {
+        universalModal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
 }
 
 // 페이지 로드 시 초기화 작업
@@ -90,21 +164,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const universalModal = document.getElementById('universal-modal');
 
     if (gamePlayLink) {
-        gamePlayLink.addEventListener('click', (e) => {
+        gamePlayLink.addEventListener('click', async (e) => {
             e.preventDefault(); // 기본 링크 동작 방지
 
-            // 브라우저 호환성 체크
-            const checkResult = checkBrowserCompatibility();
+            // 단계적 체크 프로세스 시작
+            let status = await checkBrowserCompatibility();
 
-            if (checkResult.isCompatible) {
-                // 호환성 문제가 없으면 게임으로 이동
-                window.location.href = gamePlayLink.getAttribute('href');
-            } else {
-                // 문제가 있으면 경고 모달 표시
-                showModal(checkResult.warningContent, () => {
-                    // '계속하기'를 누르면 그래도 게임으로 이동
+            // WebGPU/WebGL 체크 결과에 따른 처리
+            if (status.step === 'finished') {
+                // 이미 완료된 경우 (에러 등)
+                if (status.isCompatible) {
                     window.location.href = gamePlayLink.getAttribute('href');
-                });
+                } else {
+                    showModal(status.templateId, () => {
+                        window.location.href = gamePlayLink.getAttribute('href');
+                    }, status.continueText);
+                }
+            } else if (status.step === 'continueWithWebGL') {
+                // WebGL로 계속 진행 여부 묻기
+                showModal(status.templateId, async () => {
+                    // WebGL로 계속 진행 확인 후 하드웨어 가속 체크
+                    status = await checkHardwareAcceleration(status);
+
+                    if (status.isCompatible) {
+                        window.location.href = gamePlayLink.getAttribute('href');
+                    } else {
+                        showModal(status.templateId, () => {
+                            window.location.href = gamePlayLink.getAttribute('href');
+                        }, status.continueText);
+                    }
+                }, status.continueText);
+            } else if (status.step === 'checkHWAccel') {
+                // 하드웨어 가속 체크 단계
+                status = await checkHardwareAcceleration(status);
+
+                if (status.isCompatible) {
+                    window.location.href = gamePlayLink.getAttribute('href');
+                } else {
+                    showModal(status.templateId, () => {
+                        window.location.href = gamePlayLink.getAttribute('href');
+                    }, status.continueText);
+                }
             }
         });
     }
@@ -116,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ESC 키로 모달 닫기
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && universalModal.style.display === 'flex') {
+        if (e.key === 'Escape' && universalModal && universalModal.style.display === 'flex') {
             hideModal();
         }
     });

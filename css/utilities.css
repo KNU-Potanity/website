@@ -1,0 +1,16 @@
+/**
+ * utilities.css
+ * 
+ * 유틸리티 클래스 - 재사용 가능한 범용 스타일 클래스
+ */
+
+.text-danger {
+    color: var(--danger) !important;
+    font-weight: 600;
+}
+
+.text-large {
+    font-size: 1.3em !important;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}

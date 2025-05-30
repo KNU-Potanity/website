@@ -1,0 +1,15 @@
+/**
+ * base.css
+ * 
+ * 기본 전역 스타일 - 폰트, 배경색, 기본 여백 등 전체 페이지 스타일
+ */
+
+body {
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--page-bg);
+    color: var(--page-text);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+    line-height: 1.6;
+}
