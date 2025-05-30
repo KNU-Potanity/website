@@ -2,7 +2,10 @@
  * 브라우저 호환성 체크 및 WebGPU/WebGL 지원 확인 스크립트
  */
 
-// 브라우저 호환성 체크 함수
+/**
+ * 브라우저 호환성을 체크하고 WebGPU, WebGL 지원 여부를 확인하는 함수
+ * @returns {Promise<Object>} 브라우저 호환성 상태 객체
+ */
 async function checkBrowserCompatibility() {
     // 기본 상태 객체 정의
     let status = {
@@ -76,7 +79,10 @@ async function checkBrowserCompatibility() {
     return status;
 }
 
-// 브라우저 상태 화면에 표시
+/**
+ * 브라우저 상태 화면에 표시
+ * @param {Object} status - 브라우저 호환성 상태 객체
+ */
 function updateBrowserStatusDisplay(status) {
     const webGPUStatusEl = document.getElementById('webgpu-status');
     const hwAccelStatusEl = document.getElementById('hwaccel-status');
@@ -108,7 +114,11 @@ function updateBrowserStatusDisplay(status) {
     }
 }
 
-// 하드웨어 가속 상태 확인 함수
+/**
+ * 하드웨어 가속 상태를 확인하는 함수
+ * @param {Object} status - 브라우저 호환성 상태 객체
+ * @returns {Promise<Object>} 업데이트된 상태 객체
+ */
 async function checkHardwareAcceleration(status) {
     // 모바일에서는 하드웨어 가속 체크 생략
     if (status.isMobile) {
@@ -142,7 +152,12 @@ async function checkHardwareAcceleration(status) {
     return status;
 }
 
-// 모달 표시 함수 - 템플릿 ID를 받아서 표시
+/**
+ * 모달 창을 표시하는 함수
+ * @param {string} templateId - 모달 내용에 사용할 HTML 템플릿의 ID
+ * @param {Function|null} continueCallback - '계속하기' 버튼 클릭 시 실행할 콜백 함수
+ * @param {string} buttonText - '계속하기' 버튼의 텍스트
+ */
 function showModal(templateId, continueCallback = null, buttonText = "계속하기") {
     const universalModal = document.getElementById('universal-modal');
     const modalMessage = document.getElementById('universal-modal-message');
@@ -183,7 +198,9 @@ function showModal(templateId, continueCallback = null, buttonText = "계속하�
     modalCancelBtn.focus();
 }
 
-// 모달을 숨기는 함수
+/**
+ * 모달 창을 숨기는 함수
+ */
 function hideModal() {
     const universalModal = document.getElementById('universal-modal');
     if (universalModal) {
