@@ -8,14 +8,15 @@
     height: 100vh;
     overflow: auto;
     background: rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: none;
+    /* 초기 상태는 숨김 */
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    opacity: 0;
-    visibility: hidden;
-    transition: all var(--transition-normal);
+    backdrop-filter: blur(0.3125rem);
+    -webkit-backdrop-filter: blur(0.3125rem);
+    opacity: 1;
+    /* display:none으로 숨기므로 opacity는 1로 설정 */
+    transition: opacity var(--transition-normal);
 }
 
 .modal.active {
@@ -34,13 +35,13 @@
     width: 90%;
     position: relative;
     animation: modal-fadein 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border-top: 4px solid var(--primary);
+    border-top: 0.25rem solid var(--primary);
     transform: scale(1) translateY(0);
     transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .modal-content:hover {
-    transform: scale(1.01) translateY(-5px);
+    transform: scale(1.01) translateY(-0.3125rem);
 }
 
 /* 모달 애니메이션 */
@@ -56,11 +57,12 @@
     }
 }
 
-/* WebGPU/모달 메시지 영역 */
+/* 모달 내용 스타일 */
 #universal-modal-message {
     white-space: normal;
     font-size: 1.1rem;
     line-height: 1.7;
+    margin-bottom: 1rem;
 }
 
 /* 모달 하단 버튼 영역 */
@@ -89,6 +91,7 @@
 .modal-actions button#universal-modal-continue {
     background: var(--gradient-primary);
     color: #fff;
+    margin-left: 0.5rem;
 }
 
 .modal-actions button#universal-modal-cancel {
@@ -111,12 +114,18 @@
 }
 
 .modal-actions button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-0.1875rem);
+    box-shadow: 0 0.625rem 0.9375rem rgba(0, 0, 0, 0.1);
 }
 
 .modal-actions button:hover::before {
     transform: translateY(0);
+}
+
+/* 웹 접근성을 위한 포커스 스타일 */
+.modal-actions button:focus {
+    outline: 0.125rem solid var(--primary);
+    outline-offset: 0.125rem;
 }
 
 /* WebGPU 경고 메시지 스타일 */
@@ -127,7 +136,7 @@
     letter-spacing: 0.01em;
     margin: 1.5rem 0;
     padding: 1rem;
-    border-left: 4px solid var(--danger);
+    border-left: 0.25rem solid var(--danger);
     background: rgba(255, 82, 82, 0.1);
     border-radius: var(--border-radius-sm);
 }
@@ -180,4 +189,9 @@
         padding: 0.6rem 1.2rem;
         min-width: 100px;
     }
+}
+
+/* 모달이 열렸을 때 스크롤 방지를 위한 body 스타일 */
+body.modal-open {
+    overflow: hidden;
 }

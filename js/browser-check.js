@@ -1,180 +1,132 @@
 /**
- * 브라우저 기능 검사 및 게임 호환성 확인 스크립트
- * 사용자 브라우저의 WebGPU 지원 여부와 하드웨어 가속 상태를 확인합니다.
+ * 브라우저 호환성 체크 및 WebGPU 지원 확인 스크립트
  */
-document.addEventListener('DOMContentLoaded', function () {
-    const gamePlayLink = document.getElementById('game-play-link');
-    if (!gamePlayLink) return;
 
-    /**
-     * 모달 창을 닫는 함수
-     */
-    function closeModal() {
-        const modal = document.getElementById('universal-modal');
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
+// 브라우저 호환성 체크 함수
+function checkBrowserCompatibility() {
+    let isCompatible = true;
+    let warningContent = '';
+
+    // WebGPU 지원 확인
+    const hasWebGPU = 'gpu' in navigator;
+
+    if (!hasWebGPU) {
+        isCompatible = false;
+        const template = document.getElementById('webgpu-not-supported-template');
+        warningContent = template ? template.innerHTML : '이 게임은 WebGPU를 사용하며, 현재 브라우저에서는 지원되지 않습니다.';
     }
 
-    /**
-     * 모바일 기기 여부를 확인하는 함수
-     * @returns {boolean} 모바일 기기 여부
-     */
-    function isMobile() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-
-    /**
-     * WebGL 소프트웨어 렌더링 여부를 확인하는 함수
-     * @returns {Object} 소프트웨어 렌더링 여부와 렌더러 정보
-     */
-    function isWebGLSoftwareRenderer() {
+    // WebGL 하드웨어 가속 확인 (WebGPU가 지원되지 않을 경우)
+    if (!hasWebGPU) {
         try {
             const canvas = document.createElement('canvas');
             const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
             if (gl) {
-                let renderer = '';
                 const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-                if (debugInfo && gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)) {
-                    renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-                } else if (gl.getParameter(gl.RENDERER)) {
-                    renderer = gl.getParameter(gl.RENDERER);
-                }
-                console.log('[WebGL Renderer 감지]', renderer);
-                const isSoftware = /basic render|software|microsoft|llvmpipe|swiftshader|angle/i.test(renderer);
-                return { isSoftware, renderer };
-            }
-        } catch (e) { }
-        return { isSoftware: false, renderer: '' };
-    }
+                if (debugInfo) {
+                    const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                    // 소프트웨어 렌더러 감지 (하드웨어 가속이 꺼져있는 경우)
+                    if (renderer.includes('SwiftShader') ||
+                        renderer.includes('llvmpipe') ||
+                        renderer.includes('Software') ||
+                        renderer.includes('Mesa')) {
 
-    /**
-     * 지정된 템플릿을 모달 메시지 영역에 설정
-     * @param {Element} modalMsg - 메시지를 표시할 요소
-     * @param {string} templateId - 템플릿 ID
-     */
-    function setModalTemplate(modalMsg, templateId) {
-        modalMsg.textContent = '';
-        const template = document.getElementById(templateId);
-        if (template && template.content) {
-            modalMsg.appendChild(template.content.cloneNode(true));
-        }
-    }
-
-    /**
-     * 모달 템플릿을 표시하는 함수
-     * @param {string} templateId - 템플릿 ID
-     * @param {Object} options - 모달 옵션 (텍스트, 콜백 등)
-     */
-    function showModalTemplate(templateId, options = {}) {
-        const modal = document.getElementById('universal-modal');
-        const msg = document.getElementById('universal-modal-message');
-        const cancelBtn = document.getElementById('universal-modal-cancel');
-        const continueBtn = document.getElementById('universal-modal-continue');
-        setModalTemplate(msg, templateId);
-
-        // 렌더러 정보 표시 (있는 경우)
-        if (options.rendererInfo) {
-            const rendererElement = document.createElement('p');
-            rendererElement.textContent = options.rendererInfo;
-            msg.appendChild(rendererElement);
-        }
-
-        // 버튼 설정
-        cancelBtn.textContent = options.cancelText || '창 닫기';
-        cancelBtn.type = 'button';
-        cancelBtn.onclick = (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            closeModal();
-            if (options.onCancel) options.onCancel();
-        };
-
-        // 계속하기 버튼 표시 여부
-        if (options.continueText) {
-            continueBtn.style.display = '';
-            continueBtn.textContent = options.continueText;
-            continueBtn.type = 'button';
-            continueBtn.onclick = () => {
-                closeModal();
-                if (options.onContinue) options.onContinue();
-            };
-        } else {
-            continueBtn.style.display = 'none';
-        }
-
-        // 모달 창 외부 클릭시 닫기
-        modal.onclick = function (e) {
-            if (e.target === modal) closeModal();
-        };
-
-        // ESC 키 누를 때 모달 닫기
-        window.addEventListener('keydown', function escListener(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-                window.removeEventListener('keydown', escListener);
-            }
-        });
-
-        // 모달 표시
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-
-    // 게임 플레이 버튼 클릭 이벤트
-    gamePlayLink.addEventListener('click', async function (event) {
-        event.preventDefault();
-        let webgpuSupported = !!navigator.gpu;
-        let webgpuAdapter = null;
-        const mobile = isMobile();
-        const webglInfo = isWebGLSoftwareRenderer();
-
-        // WebGPU 어댑터 요청 (지원되는 경우)
-        if (webgpuSupported) {
-            try {
-                webgpuAdapter = await navigator.gpu.requestAdapter();
-            } catch (e) { }
-        }
-
-        // 브라우저 호환성 검사 및 안내
-        // 분기: 우선순위대로 안내
-        if (!webgpuSupported) {
-            // WebGPU 미지원: 상세 안내
-            showModalTemplate('webgpu-not-supported-template', {
-                continueText: 'WebGL로 플레이하기',
-                rendererInfo: `그래픽: ${webglInfo.renderer}`,
-                onContinue: function () {
-                    // WebGL로 플레이하기(무시): WebGL 하드웨어 가속 확인
-                    if (!mobile && webglInfo.isSoftware) {
-                        showModalTemplate('webgl-no-hwaccel-template', {
-                            continueText: '무시하고 플레이',
-                            rendererInfo: `그래픽: ${webglInfo.renderer}`,
-                            onContinue: function () { window.location.href = gamePlayLink.href; }
-                        });
-                    } else {
-                        window.location.href = gamePlayLink.href;
+                        isCompatible = false;
+                        const template = document.getElementById('webgl-no-hwaccel-template');
+                        warningContent = template ? template.innerHTML : 'WebGL 하드웨어 가속이 비활성화되어 있습니다.';
                     }
                 }
-            });
-            return;
+            }
+        } catch (e) {
+            console.error('WebGL 상태 확인 중 오류:', e);
         }
-        if (!webgpuAdapter) {
-            // WebGPU 지원, 어댑터 없음: 하드웨어 가속 안내
-            showModalTemplate('webgpu-no-adapter-template', {
-                continueText: '무시하고 플레이',
-                rendererInfo: `그래픽: ${webglInfo.renderer}`,
-                onContinue: function () { window.location.href = gamePlayLink.href; }
-            });
-            return;
+    }
+
+    return {
+        isCompatible,
+        warningContent
+    };
+}
+
+// 모달 관련 함수들
+function showModal(content, continueCallback = null) {
+    const universalModal = document.getElementById('universal-modal');
+    const modalMessage = document.getElementById('universal-modal-message');
+    const modalContinueBtn = document.getElementById('universal-modal-continue');
+
+    // 모달 내용 설정
+    modalMessage.innerHTML = content;
+
+    // 계속 버튼 설정
+    if (continueCallback) {
+        modalContinueBtn.style.display = 'block';
+        modalContinueBtn.onclick = () => {
+            hideModal();
+            continueCallback();
+        };
+    } else {
+        modalContinueBtn.style.display = 'none';
+    }
+
+    // 모달 표시
+    universalModal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+}
+
+function hideModal() {
+    const universalModal = document.getElementById('universal-modal');
+    universalModal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+}
+
+// 페이지 로드 시 초기화 작업
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('브라우저 호환성 체크 스크립트가 로드되었습니다.');
+
+    // 게임 플레이 링크 이벤트 핸들러
+    const gamePlayLink = document.getElementById('game-play-link');
+    const modalCancelBtn = document.getElementById('universal-modal-cancel');
+    const universalModal = document.getElementById('universal-modal');
+
+    if (gamePlayLink) {
+        gamePlayLink.addEventListener('click', (e) => {
+            e.preventDefault(); // 기본 링크 동작 방지
+
+            // 브라우저 호환성 체크
+            const checkResult = checkBrowserCompatibility();
+
+            if (checkResult.isCompatible) {
+                // 호환성 문제가 없으면 게임으로 이동
+                window.location.href = gamePlayLink.getAttribute('href');
+            } else {
+                // 문제가 있으면 경고 모달 표시
+                showModal(checkResult.warningContent, () => {
+                    // '계속하기'를 누르면 그래도 게임으로 이동
+                    window.location.href = gamePlayLink.getAttribute('href');
+                });
+            }
+        });
+    }
+
+    // 모달 닫기 버튼 이벤트 리스너
+    if (modalCancelBtn) {
+        modalCancelBtn.addEventListener('click', hideModal);
+    }
+
+    // ESC 키로 모달 닫기
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && universalModal.style.display === 'flex') {
+            hideModal();
         }
-        if (!mobile && webglInfo.isSoftware) {
-            showModalTemplate('webgl-no-hwaccel-template', {
-                continueText: '무시하고 플레이',
-                rendererInfo: `그래픽: ${webglInfo.renderer}`,
-                onContinue: function () { window.location.href = gamePlayLink.href; }
-            });
-            return;
-        }
-        // 모두 통과: 바로 게임 플레이
-        window.location.href = gamePlayLink.href;
     });
+
+    // 모달 바깥 영역 클릭 시 닫기
+    if (universalModal) {
+        universalModal.addEventListener('click', (e) => {
+            if (e.target === universalModal) {
+                hideModal();
+            }
+        });
+    }
 });

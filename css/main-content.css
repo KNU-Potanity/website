@@ -35,7 +35,7 @@ body {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(1.25rem);
     }
 
     to {
@@ -66,9 +66,9 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 0.25rem;
     background: var(--gradient-primary);
-    border-radius: 2px;
+    border-radius: 0.125rem;
     transition: all var(--transition-normal);
 }
 
@@ -86,7 +86,8 @@ body {
 .game-play-button {
     display: block;
     width: 100%;
-    max-width: 350px;
+    max-width: 31.25rem;
+    /* 500px를 rem 단위로 변경 */
     margin: 0 auto;
     position: relative;
     transition: all var(--transition-normal);
@@ -99,11 +100,16 @@ body {
     border-radius: var(--border-radius-md);
     transition: all var(--transition-fast);
     box-shadow: var(--box-shadow);
+    border: 0.1875rem solid transparent;
+    /* 3px를 rem 단위로 변경 */
 }
 
 .game-play-button:hover img {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-0.5rem) scale(1.03);
+    box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.25);
+    /* 그림자 강화 */
+    border-color: var(--primary);
+    /* 호버 시 테두리 색상 변경 */
 }
 
 .game-play-button::before {
@@ -125,6 +131,14 @@ body {
     width: 110%;
     height: 110%;
     opacity: 0.8;
+}
+
+/* 반응형에서도 게임 플레이 버튼 크기 조정 */
+@media (max-width: 768px) {
+    .game-play-button {
+        max-width: 80%;
+        /* 모바일에서도 충분히 크게 보이도록 설정 */
+    }
 }
 
 /* ===== 미니게임 리스트 구조화 ===== */
@@ -168,10 +182,10 @@ body {
 .minigame-content h3::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -0.3125rem;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 0.125rem;
     background: var(--gradient-accent);
     transition: width var(--transition-normal);
 }
@@ -264,8 +278,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(0.1875rem);
+    -webkit-backdrop-filter: blur(0.1875rem);
     opacity: 0.7;
 }
 
@@ -306,7 +320,7 @@ body {
 .slider-dot.active {
     background-color: white;
     transform: scale(1.2);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0.625rem rgba(255, 255, 255, 0.8);
 }
 
 /* ===== 연혁(History) ===== */
@@ -349,7 +363,7 @@ body {
 
 #history ul li ul {
     margin-top: 0.8rem;
-    border-left: 2px dashed var(--section-border);
+    border-left: 0.125rem dashed var(--section-border);
     margin-left: 0.5rem;
     padding-left: 1.5rem;
 }
@@ -391,10 +405,10 @@ body {
 #contact a::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -0.125rem;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 0.125rem;
     background: var(--gradient-accent);
     transition: width var(--transition-fast);
 }
@@ -432,7 +446,7 @@ footer::before {
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 0.25rem;
     background: var(--gradient-accent);
     z-index: 1;
 }
