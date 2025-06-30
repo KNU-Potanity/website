@@ -65,28 +65,6 @@ header h1 {
     transform: translateY(-0.0625rem);
 }
 
-/* ===== 스타일 토글 버튼 ===== */
-#style-toggle-header {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.375rem 0.75rem;
-    border-radius: var(--border-radius-md);
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: all var(--transition-normal);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    font-family: inherit;
-}
-
-#style-toggle-header:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-0.0625rem);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
 /* ===== 게임 플레이 버튼 ===== */
 .game-play-button-container {
     text-align: center;

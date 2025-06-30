@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 각 이미지 로드 시도
         for (let i = 1; i <= MAX_IMAGES; i++) {
             const img = new Image();
-            img.src = `images/minigame${gameNumber}-${i}.png`;
+            img.src = `images/minigames/minigame${gameNumber}-${i}.png`;
             img.alt = `미니게임 ${gameNumber} 이미지 ${i}`;
             img.className = i === 1 ? 'active' : '';
 

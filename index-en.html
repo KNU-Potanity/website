@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/minimal.css">
 </head>
 
 <body>
@@ -20,7 +19,6 @@
             <nav class="lang-switch" aria-label="Language Switch">
                 <a href="index.html">Korean</a> | <a href="index-en.html">English</a>
             </nav>
-            <button class="style-toggle" id="style-toggle-header">Minimal Style</button>
         </div>
     </header>
 
@@ -56,53 +54,6 @@
                     </ul>
                 </li>
             </ul>
-        </section>
-
-        <section id="activity-photos" class="section activity-photos-section">
-            <h2>Activity Photos</h2>
-            <p>Discover various activities of Potanity through photos!</p>
-            <div class="activity-gallery">
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/photo-1.jpg" alt="Regular Study Sessions" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder" style="display: none;">Regular Study Sessions Image</div>
-                    </div>
-                    <div class="photo-content">
-                        <h3>Regular Study Sessions</h3>
-                        <p>Deep learning sessions on Unity and game development.</p>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/photo-2.jpg" alt="Pizza Day" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder" style="display: none;">Pizza Day Image</div>
-                    </div>
-                    <div class="photo-content">
-                        <h3>Pizza Day</h3>
-                        <p>Monthly Pizza Day! Enjoy delicious pizza and fun times together.</p>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/photo-3.jpg" alt="Game Jam" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder" style="display: none;">Game Jam Image</div>
-                    </div>
-                    <div class="photo-content">
-                        <h3>Game Jam</h3>
-                        <p>Creative game development in a short time during game jam activities.</p>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/photo-4.jpg" alt="Exhibition" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder" style="display: none;">Exhibition Image</div>
-                    </div>
-                    <div class="photo-content">
-                        <h3>Exhibition</h3>
-                        <p>Showcasing our games to others at exhibitions and events.</p>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section id="game-play" class="section game-play-button-container">
@@ -257,6 +208,49 @@
             </ul>
         </section>
 
+        <section id="activity-photos" class="section activity-photos-section">
+            <h2>Activity Photos</h2>
+            <p>Discover various activities of Potanity through photos!</p>
+            <div class="activity-gallery">
+                <div class="activity-photo-box">
+                    <div class="photo-image">
+                        <img src="images/activities/photo-1.jpg" alt="Regular Study Sessions">
+                    </div>
+                    <div class="photo-content">
+                        <h3>Regular Study Sessions</h3>
+                        <p>Deep learning sessions on Unity and game development.</p>
+                    </div>
+                </div>
+                <div class="activity-photo-box">
+                    <div class="photo-image">
+                        <img src="images/activities/photo-2.jpg" alt="Pizza Day">
+                    </div>
+                    <div class="photo-content">
+                        <h3>Pizza Day</h3>
+                        <p>Monthly Pizza Day! Enjoy delicious pizza and fun times together.</p>
+                    </div>
+                </div>
+                <div class="activity-photo-box">
+                    <div class="photo-image">
+                        <img src="images/activities/photo-3.jpg" alt="Game Jam">
+                    </div>
+                    <div class="photo-content">
+                        <h3>Game Jam</h3>
+                        <p>Creative game development in a short time during game jam activities.</p>
+                    </div>
+                </div>
+                <div class="activity-photo-box">
+                    <div class="photo-image">
+                        <img src="images/activities/photo-4.jpg" alt="Exhibition">
+                    </div>
+                    <div class="photo-content">
+                        <h3>Exhibition</h3>
+                        <p>Showcasing our games to others at exhibitions and events.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="section">
             <h2>Contact</h2>
             <p>For inquiries about Potanity, membership, or collaboration proposals, please contact us below.</p>
@@ -285,7 +279,6 @@
 
     <script src="js/dynamic-image-loader.js"></script>
     <script src="js/image-slider.js"></script>
-    <script src="js/style-toggle.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
