@@ -36,40 +36,6 @@ header h1 {
     margin-top: 0.75rem;
 }
 
-/* 테마 토글 버튼 */
-.theme-toggle-container {
-    position: relative;
-}
-
-#theme-toggle {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 0.5rem;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    font-size: 1rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--card-box-shadow);
-}
-
-#theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-    box-shadow: var(--hover-shadow);
-}
-
-#theme-toggle:active {
-    transform: scale(0.95);
-}
-
 /* 언어 전환 네비게이션 */
 .lang-switch {
     display: flex;
@@ -387,7 +353,7 @@ footer p {
     background: var(--gradient-primary);
     border-radius: 50%;
     transition: all var(--transition-normal);
-    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 2px 4px rgba(41, 90, 160, 0.2);
 }
 
 #history ul li:hover::before {
@@ -474,7 +440,7 @@ footer p {
 
 #contact a:hover {
     color: var(--secondary);
-    background: rgba(59, 130, 246, 0.1);
+    background: rgba(41, 90, 160, 0.1);
 }
 
 #contact a:hover::after {
