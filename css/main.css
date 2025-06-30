@@ -6,44 +6,44 @@
 
 /* ===== CSS 변수 정의 ===== */
 :root {
-    /* 메인 컬러 팔레트 - #295AA0 기반 */
+    /* 메인 컬러 팔레트 - #295AA0 기반 (어두운 톤) */
     --primary: #295AA0;
-    --primary-light: #3B6BB8;
+    --primary-light: #4A7BC8;
     --primary-dark: #1E4A8A;
-    --secondary: #4A90E2;
-    --accent: #5BB3F7;
-    --success: #2E8B57;
-    --warning: #FF8C42;
-    --danger: #E74C3C;
-    --info: #3498DB;
+    --secondary: #5B8FD9;
+    --accent: #7BA3E8;
+    --success: #4A7C59;
+    --warning: #B8860B;
+    --danger: #A0522D;
+    --info: #5B8FD9;
 
-    /* 그라디언트 - #295AA0 기반 세련된 그라디언트 */
-    --gradient-primary: linear-gradient(135deg, #295AA0 0%, #3B6BB8 100%);
-    --gradient-secondary: linear-gradient(135deg, #4A90E2 0%, #5BB3F7 100%);
-    --gradient-accent: linear-gradient(135deg, #5BB3F7 0%, #7BC8F9 100%);
-    --gradient-success: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
-    --gradient-warning: linear-gradient(135deg, #FF8C42 0%, #FFA726 100%);
-    --gradient-danger: linear-gradient(135deg, #E74C3C 0%, #F39C12 100%);
-    --gradient-hero: linear-gradient(135deg, #295AA0 0%, #3B6BB8 50%, #4A90E2 100%);
-    --gradient-modern: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 50%, #CBD5E1 100%);
+    /* 그라디언트 - #295AA0 기반 어두운 그라디언트 */
+    --gradient-primary: linear-gradient(135deg, #295AA0 0%, #4A7BC8 100%);
+    --gradient-secondary: linear-gradient(135deg, #5B8FD9 0%, #7BA3E8 100%);
+    --gradient-accent: linear-gradient(135deg, #7BA3E8 0%, #9BB8F0 100%);
+    --gradient-success: linear-gradient(135deg, #4A7C59 0%, #5B8F6B 100%);
+    --gradient-warning: linear-gradient(135deg, #B8860B 0%, #D4A017 100%);
+    --gradient-danger: linear-gradient(135deg, #A0522D 0%, #B8860B 100%);
+    --gradient-hero: linear-gradient(135deg, #1E3A5F 0%, #295AA0 50%, #4A7BC8 100%);
+    --gradient-modern: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #94A3B8 100%);
     --gradient-subtle: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
 
-    /* 통일된 색상 테마 */
-    --page-bg: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 50%, #CBD5E1 100%);
-    --container-bg: rgba(255, 255, 255, 0.95);
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --page-text: #1E293B;
-    --card-title-text: #0F172A;
-    --section-title-text: #1E293B;
-    --section-border: rgba(226, 232, 240, 0.6);
+    /* 어두운 색상 테마 */
+    --page-bg: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #94A3B8 100%);
+    --container-bg: rgba(241, 245, 249, 0.9);
+    --card-bg: rgba(248, 250, 252, 0.7);
+    --page-text: #334155;
+    --card-title-text: #1E293B;
+    --section-title-text: #334155;
+    --section-border: rgba(148, 163, 184, 0.3);
     --link-text: var(--primary);
-    --highlight-glow: 0 0 1.5rem rgba(41, 90, 160, 0.3);
+    --highlight-glow: 0 0 1.5rem rgba(41, 90, 160, 0.15);
 
-    /* 그림자 - 세련되고 모던한 그림자 */
-    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --card-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    /* 부드러운 그림자 */
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --card-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+    --glass-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 
     /* 테두리 반경 */
     --border-radius-sm: 0.375rem;
@@ -106,7 +106,7 @@ body {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(41, 90, 160, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(41, 90, 160, 0.1), transparent);
 }
 
 .section {
