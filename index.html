@@ -51,6 +51,27 @@
             </ul>
         </section>
 
+        <section id="activity-photos" class="section activity-photos-section">
+            <h2>활동 사진</h2>
+            <p>포테니티의 다양한 활동 모습을 사진으로 만나보세요!</p>
+            <div class="activity-gallery">
+                <div class="activity-card">
+                    <div class="image-slider">
+                        <div class="slider-container">
+                            <!-- 이미지는 activity-photos-loader.js에서 동적으로 로드됩니다 -->
+                        </div>
+                        <button class="slider-nav prev" aria-label="이전 이미지">&lt;</button>
+                        <button class="slider-nav next" aria-label="다음 이미지">&gt;</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="activity-content">
+                        <h3 id="image-title">활동 사진</h3>
+                        <p id="image-description">포테니티의 다양한 활동을 담은 사진들입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="game-play" class="section game-play-button-container">
             <h2>게임 플레이</h2>
             <p>아래 버튼을 클릭하여 저희가 만든 게임을 웹브라우저에서 즉시 즐겨보세요!</p>
@@ -223,6 +244,7 @@
     </footer>
 
     <script src="js/dynamic-image-loader.js"></script>
+    <script src="js/activity-photos-loader.js"></script>
     <script src="js/image-slider.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();

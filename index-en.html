@@ -56,6 +56,27 @@
             </ul>
         </section>
 
+        <section id="activity-photos" class="section activity-photos-section">
+            <h2>Activity Photos</h2>
+            <p>Discover various activities of Potanity through photos!</p>
+            <div class="activity-gallery">
+                <div class="activity-card">
+                    <div class="image-slider">
+                        <div class="slider-container">
+                            <!-- Images are loaded dynamically by activity-photos-loader.js -->
+                        </div>
+                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
+                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="activity-content">
+                        <h3 id="image-title">Activity Photos</h3>
+                        <p id="image-description">Photos capturing various activities of Potanity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="game-play" class="section game-play-button-container">
             <h2>Game Play</h2>
             <p>Click the button below to instantly enjoy the games we've made in your web browser!</p>
@@ -235,6 +256,7 @@
     </footer>
 
     <script src="js/dynamic-image-loader.js"></script>
+    <script src="js/activity-photos-loader.js"></script>
     <script src="js/image-slider.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
