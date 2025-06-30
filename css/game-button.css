@@ -72,35 +72,3 @@
         /* 모바일에서만 다른 비율(80%) 적용 */
     }
 }
-
-/* 브라우저 호환성 상태 표시 */
-.browser-status {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.status-badge {
-    display: inline-block;
-    padding: 0.4rem 0.8rem;
-    border-radius: var(--border-radius-sm);
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #fff;
-    background-color: #64748b;
-}
-
-.status-badge.supported {
-    background-color: var(--success);
-}
-
-.status-badge.not-supported {
-    background-color: var(--danger);
-}
-
-.status-badge.warning {
-    background-color: var(--warning);
-    color: #333;
-}

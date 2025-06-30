@@ -9,7 +9,6 @@
     <title>Kangwon National University Game Development Club Potanity - Official Website</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/container-sections.css">
     <link rel="stylesheet" href="css/game-button.css">
@@ -75,13 +74,7 @@
             <h2>Game Play</h2>
             <p>Click the button below to instantly enjoy the games we've made in your web browser!</p>
 
-            <!-- 브라우저 호환성 상태 표시 -->
-            <div id="browser-status" class="browser-status">
-                <span id="webgpu-status" class="status-badge">WebGPU: 확인 중...</span>
-                <span id="hwaccel-status" class="status-badge">하드웨어 가속: 확인 중...</span>
-            </div>
-
-            <a href="game/index.html" class="game-play-button" id="game-play-link" target="_blank">
+            <a href="game/index.html" class="game-play-button" target="_blank">
                 <img src="images/game-play-button.png" alt="Game Play Start Button Image">
             </a>
         </section>
@@ -205,8 +198,8 @@
                     </div>
                     <div class="minigame-content">
                         <h3>Minigame 8: Slime Eater <span class="text-danger">(In Development)</span></h3>
-                        <p>A game where you grow by eating slimes! Collect various slimes and challenge your highest
-                            score.</p>
+                        <p>A game where you grow by eating slimes! Collect various slimes and challenge the highest
+                            record.</p>
                     </div>
                 </div>
             </div>
@@ -215,15 +208,15 @@
         <section id="history" class="section">
             <h2>Club History</h2>
             <ul>
-                <li><strong>Summer Vacation 2024:</strong> Potanity Club Established</li>
-                <li><strong>Fall Semester 2024:</strong> Internal Club Studies Conducted</li>
-                <li><strong>Winter Vacation 2024:</strong> Metal Slug Game Production</li>
-                <li><strong>Spring Semester 2025:</strong>
+                <li><strong>2024 Summer Vacation:</strong> Potanity Club Establishment</li>
+                <li><strong>2024 2nd Semester:</strong> Internal Club Study Sessions</li>
+                <li><strong>2024 Winter Vacation:</strong> Metal Slug Game Development</li>
+                <li><strong>2025 1st Semester:</strong>
                     <ul>
-                        <li>Regular Activities Started</li>
-                        <li>Studies Conducted</li>
-                        <li>Other Minigames Produced</li>
-                        <li>Participation in School Events and Game Demonstrations</li>
+                        <li>Regular Activities Begin</li>
+                        <li>Study Sessions</li>
+                        <li>Other Minigame Development</li>
+                        <li>School Event Participation and Game Demonstrations</li>
                     </ul>
                 </li>
             </ul>
@@ -231,9 +224,9 @@
 
         <section id="contact" class="section">
             <h2>Contact</h2>
-            <p>For inquiries, membership, or collaboration proposals regarding Potanity, please contact us below.</p>
+            <p>For inquiries about Potanity, membership, or collaboration proposals, please contact us below.</p>
             <p>
-                <strong>Membership, Other Inquiries Contact:</strong>
+                <strong>Membership, General Inquiries:</strong>
                 <a href="https://open.kakao.com/o/sds7asbg" target="_blank">open.kakao.com/o/sds7asbg</a>
             </p>
             <p>
@@ -247,7 +240,7 @@
                         target="_blank">knu-potanity.github.io/website/</a>
                 </strong>
             </p>
-            <p><strong>Club Room:</strong> Hanul Hall, Kangwon National University</p>
+            <p><strong>Club Room:</strong> Kangwon National University Hanul Building</p>
         </section>
     </main>
 
@@ -255,78 +248,7 @@
         <p>&copy; <span id="current-year"></span> Potanity. All Rights Reserved.</p>
     </footer>
 
-    <div id="universal-modal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <div id="universal-modal-message"></div>
-            <div class="modal-actions">
-                <button id="universal-modal-cancel" type="button">Close Window</button>
-                <button id="universal-modal-continue" type="button" style="display:none;">Continue</button>
-            </div>
-        </div>
-    </div>
-    <template id="webgpu-not-supported-template">
-        <strong>WebGPU Not Supported Guide</strong>
-        <div class="webgpu-warning-alert">WebGPU is not currently supported in your browser!</div>
-        <div>This game was created using the latest graphics technology, <b>WebGPU</b>. An environment that supports
-            WebGPU is required for smooth gameplay.<br>
-            <b>Recommended Browsers and Environments (as of early 2025):</b>
-            <ul>
-                <li><b>Desktop:</b>
-                    <ul>
-                        <li>Chrome (version 113+): Windows, macOS, ChromeOS, Linux</li>
-                        <li>Edge (version 113+): Windows, macOS, Linux</li>
-                        <li>Firefox (Nightly build or version 141+ planned, currently requires flag activation)</li>
-                        <li>Safari (Technology Preview on latest macOS or enable via Developer menu/feature flags in
-                            Safari stable version)</li>
-                        <li>Opera (version 100+)</li>
-                    </ul>
-                </li>
-
-                <li><b>Mobile:</b>
-                    <ul>
-                        <li>Chrome for Android (version 121/123+)</li>
-                        <li>Safari on iOS (iOS 18 beta+, requires enabling feature flag in settings)</li>
-                        <li>Samsung Internet (version 25+)</li>
-                        <li>Opera Mobile (version 80+)</li>
-                    </ul>
-                </li>
-            </ul>
-            <a href="https://caniuse.com/webgpu" target="_blank" rel="noopener">Check WebGPU browser compatibility
-                (caniuse.com) directly</a><br>
-            <b>Play in WebGL mode or change your browser.</b>
-        </div>
-        <span class="text-danger">(The game may not run normally or some features may be limited.)</span>
-    </template>
-
-    <template id="webgpu-no-adapter-template">
-        <strong>WebGPU Hardware Acceleration Guide</strong>
-        <div class="webgpu-warning-alert">Could not find a graphics adapter (GPU) that supports WebGPU.</div>
-        <div>Hardware acceleration may be turned off, drivers may be outdated, or you might be in a virtual
-            machine/remote environment.<br><span class="text-danger">If hardware acceleration is off, game performance
-                may be severely degraded or the game may not run.</span><br><br>
-            <b>How to enable hardware acceleration:</b> Search for "Use hardware acceleration" in your browser settings
-            and enable it.<br>
-            (e.g., Chrome - Settings > System > Use hardware acceleration when available)<br>
-            <span class="text-danger">※ In Firefox browser, this warning may continue to appear regardless of hardware
-                acceleration status.</span>
-        </div>
-    </template>
-
-    <template id="webgl-no-hwaccel-template">
-        <strong>WebGL Hardware Acceleration Guide</strong>
-        <div class="webgpu-warning-alert">Hardware acceleration is disabled in your WebGL environment.</div>
-        <div><span class="text-danger">If hardware acceleration is off, game performance may be severely degraded or the
-                game may not run.</span><br><br>
-            <b>How to enable hardware acceleration:</b> Search for "Use hardware acceleration" in your browser settings
-            and enable it.<br>
-            (e.g., Chrome - Settings > System > Use hardware acceleration when available)<br>
-            <span class="text-danger">※ In Firefox browser, this warning may continue to appear regardless of hardware
-                acceleration status.</span>
-        </div>
-    </template>
-
     <script src="js/theme.js"></script>
-    <script src="js/browser-check.js"></script>
     <script src="js/dynamic-image-loader.js"></script>
     <script src="js/image-slider.js"></script>
     <script>
