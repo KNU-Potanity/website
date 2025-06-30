@@ -12,21 +12,11 @@ const THEME_STORAGE_KEY = 'potanity-theme-preference';
  * @param {boolean} savePreference - 사용자 선택을 저장할지 여부
  */
 function applyTheme(theme, savePreference = false) {
-    if (theme === 'dark') {
-        bodyElement.classList.add('dark-mode');
-        bodyElement.classList.remove('light-mode');
-        if (savePreference) {
-            localStorage.setItem(THEME_STORAGE_KEY, 'dark');
-        }
-        updateThemeToggleIcon('dark');
-    } else {
-        bodyElement.classList.add('light-mode');
-        bodyElement.classList.remove('dark-mode');
-        if (savePreference) {
-            localStorage.setItem(THEME_STORAGE_KEY, 'light');
-        }
-        updateThemeToggleIcon('light');
+    bodyElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+    if (savePreference) {
+        localStorage.setItem(THEME_STORAGE_KEY, theme === 'dark' ? 'dark' : 'light');
     }
+    updateThemeToggleIcon(theme);
 }
 
 /**
@@ -45,8 +35,8 @@ function updateThemeToggleIcon(theme) {
  * 테마를 토글하는 함수
  */
 function toggleTheme() {
-    const isDarkMode = bodyElement.classList.contains('dark-mode');
-    applyTheme(isDarkMode ? 'light' : 'dark', true);
+    const currentTheme = bodyElement.getAttribute('data-theme');
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark', true);
 }
 
 /**
