@@ -27,29 +27,44 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextBtn = slider.querySelector('.slider-nav.next');
         const dotsContainer = slider.querySelector('.slider-dots');
 
+        // 이미지가 없으면 나중에 다시 시도
+        if (images.length === 0) {
+            setTimeout(() => setupSlider(slider), 500);
+            return;
+        }
+
         // 이미지가 1개 이하면 네비게이션 숨김
         if (images.length <= 1) {
-            [prevBtn, nextBtn, dotsContainer].forEach(el => el.style.display = 'none');
+            [prevBtn, nextBtn, dotsContainer].forEach(el => {
+                if (el) el.style.display = 'none';
+            });
             return;
         }
 
         let currentIndex = 0;
 
-        // 도트 생성
+        // 기존 도트 제거
         dotsContainer.innerHTML = '';
+        
+        // 도트 생성
         images.forEach((_, index) => {
             const dot = document.createElement('div');
-            dot.classList.add('slider-dot');
+            dot.classList.add('dot');
             if (index === 0) dot.classList.add('active');
             dot.addEventListener('click', () => showImage(index));
             dotsContainer.appendChild(dot);
         });
 
-        const dots = dotsContainer.querySelectorAll('.slider-dot');
+        const dots = dotsContainer.querySelectorAll('.dot');
+
+        // 첫 번째 이미지만 활성화
+        images.forEach((img, index) => {
+            img.classList.toggle('active', index === 0);
+        });
 
         // 네비게이션 버튼 설정
-        prevBtn.addEventListener('click', showPrevImage);
-        nextBtn.addEventListener('click', showNextImage);
+        if (prevBtn) prevBtn.addEventListener('click', showPrevImage);
+        if (nextBtn) nextBtn.addEventListener('click', showNextImage);
 
         // 터치 이벤트 설정
         setupTouchEvents();
@@ -74,8 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
          * 특정 인덱스 이미지 표시
          */
         function showImage(index) {
-            images.forEach((img, i) => img.classList.toggle('active', i === index));
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            // 이미지 표시/숨김
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+            
+            // 도트 활성화/비활성화
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
             currentIndex = index;
         }
 

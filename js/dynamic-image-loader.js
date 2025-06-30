@@ -49,9 +49,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (pendingImages === 0) {
                 completedMinigames++;
+                
+                // 각 미니게임이 완료될 때마다 슬라이더 초기화 시도
+                setTimeout(() => {
+                    const slider = item.querySelector('.image-slider');
+                    if (slider) {
+                        // 이미지가 로드된 후 슬라이더 재초기화
+                        const event = new Event('imagesLoaded');
+                        document.dispatchEvent(event);
+                    }
+                }, 100);
 
                 if (completedMinigames === totalMinigames) {
-                    document.dispatchEvent(new Event('imagesLoaded'));
+                    // 모든 미니게임이 완료되면 최종 이벤트 발생
+                    setTimeout(() => {
+                        document.dispatchEvent(new Event('imagesLoaded'));
+                    }, 200);
                 }
             }
         }

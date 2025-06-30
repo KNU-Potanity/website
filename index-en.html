@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/minimal.css">
 </head>
 
 <body>
@@ -19,6 +20,7 @@
             <nav class="lang-switch" aria-label="Language Switch">
                 <a href="index.html">Korean</a> | <a href="index-en.html">English</a>
             </nav>
+            <button class="style-toggle" id="style-toggle-header">Minimal Style</button>
         </div>
     </header>
 
@@ -60,18 +62,44 @@
             <h2>Activity Photos</h2>
             <p>Discover various activities of Potanity through photos!</p>
             <div class="activity-gallery">
-                <div class="activity-card">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- Images are loaded dynamically by activity-photos-loader.js -->
-                        </div>
-                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
-                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
-                        <div class="slider-dots"></div>
+                <div class="activity-photo-box">
+                    <div class="photo-image">
+                        <img src="images/activities/photo-1.jpg" alt="Regular Study Sessions" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder" style="display: none;">Regular Study Sessions Image</div>
                     </div>
-                    <div class="activity-content">
-                        <h3 id="image-title">Activity Photos</h3>
-                        <p id="image-description">Photos capturing various activities of Potanity.</p>
+                    <div class="photo-content">
+                        <h3>Regular Study Sessions</h3>
+                        <p>Deep learning sessions on Unity and game development.</p>
+                    </div>
+                </div>
+                <div class="activity-photo-box">
+                    <div class="photo-image">
+                        <img src="images/activities/photo-2.jpg" alt="Pizza Day" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder" style="display: none;">Pizza Day Image</div>
+                    </div>
+                    <div class="photo-content">
+                        <h3>Pizza Day</h3>
+                        <p>Monthly Pizza Day! Enjoy delicious pizza and fun times together.</p>
+                    </div>
+                </div>
+                <div class="activity-photo-box">
+                    <div class="photo-image">
+                        <img src="images/activities/photo-3.jpg" alt="Game Jam" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder" style="display: none;">Game Jam Image</div>
+                    </div>
+                    <div class="photo-content">
+                        <h3>Game Jam</h3>
+                        <p>Creative game development in a short time during game jam activities.</p>
+                    </div>
+                </div>
+                <div class="activity-photo-box">
+                    <div class="photo-image">
+                        <img src="images/activities/photo-4.jpg" alt="Exhibition" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder" style="display: none;">Exhibition Image</div>
+                    </div>
+                    <div class="photo-content">
+                        <h3>Exhibition</h3>
+                        <p>Showcasing our games to others at exhibitions and events.</p>
                     </div>
                 </div>
             </div>
@@ -256,8 +284,8 @@
     </footer>
 
     <script src="js/dynamic-image-loader.js"></script>
-    <script src="js/activity-photos-loader.js"></script>
     <script src="js/image-slider.js"></script>
+    <script src="js/style-toggle.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
