@@ -232,7 +232,7 @@ header h1 {
 .image-slider {
     position: relative;
     width: 300px;
-    height: 200px;
+    height: 300px;
     border-radius: var(--border-radius-md);
     overflow: hidden;
     box-shadow: var(--box-shadow);
