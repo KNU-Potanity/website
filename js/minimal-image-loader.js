@@ -78,6 +78,14 @@ class MinimalImageLoader {
             img.onload = () => {
                 img.alt = `미니게임 ${gameNumber} 이미지 ${imageIndex}`;
                 img.loading = 'lazy';
+                img.style.position = 'absolute';
+                img.style.top = '0';
+                img.style.left = '0';
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'contain';
+                img.style.opacity = imageIndex === 1 ? '1' : '0';
+                img.style.transition = 'opacity 0.3s ease';
                 this.loadedImages.set(imagePath, true);
                 resolve(img);
             };
