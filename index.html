@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="창의적이고 재미있는 프로젝트를 통해 함께 성장하는 강원대학교 게임개발 중앙동아리 포테니티의 공식 홈페이지입니다.">
+    <meta name="keywords" content="강원대학교, 게임개발, 동아리, 포테니티, Unity, 게임제작">
+    <meta name="author" content="강원대학교 게임개발 중앙동아리 포테니티">
+    <meta name="robots" content="index, follow">
     <title>강원대학교 게임개발 중앙동아리 포테니티 홈페이지</title>
+    <link rel="preload" href="css/main.css" as="style">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -55,8 +59,8 @@
             <h2>게임 플레이</h2>
             <p>아래 버튼을 클릭하여 저희가 만든 게임을 웹브라우저에서 즉시 즐겨보세요!</p>
 
-            <a href="game/index.html" class="game-play-button" target="_blank">
-                <img src="images/game-play-button.png" alt="게임 플레이 시작 버튼 이미지">
+            <a href="game/index.html" class="game-play-button" target="_blank" rel="noopener" aria-label="포테니티 게임 플레이 시작">
+                <img src="images/game-play-button.png" alt="게임 플레이 시작 버튼 이미지" loading="lazy">
             </a>
         </section>
 
@@ -65,13 +69,26 @@
             <p>포테니티가 직접 개발한 미니게임들을 만나보세요!</p>
             <div class="minigame-list-vertical">
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- 이미지는 dynamic-image-loader.js에서 동적으로 로드됩니다 -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="1">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>이미지 로딩 중...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="이전 이미지">&lt;</button>
-                        <button class="slider-nav next" aria-label="다음 이미지">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-1" id="slide-1-1" checked>
+                        <input type="radio" name="slider-1" id="slide-1-2">
+                        <input type="radio" name="slider-1" id="slide-1-3">
+                        <input type="radio" name="slider-1" id="slide-1-4">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-1-1" class="slider-dot" aria-label="이미지 1"></label>
+                            <label for="slide-1-2" class="slider-dot" aria-label="이미지 2"></label>
+                            <label for="slide-1-3" class="slider-dot" aria-label="이미지 3"></label>
+                            <label for="slide-1-4" class="slider-dot" aria-label="이미지 4"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>미니게임 1: 메탈슬러그</h3>
@@ -79,13 +96,22 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- 이미지는 dynamic-image-loader.js에서 동적으로 로드됩니다 -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="2">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>이미지 로딩 중...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="이전 이미지">&lt;</button>
-                        <button class="slider-nav next" aria-label="다음 이미지">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-2" id="slide-2-1" checked>
+                        <input type="radio" name="slider-2" id="slide-2-2">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-2-1" class="slider-dot" aria-label="이미지 1"></label>
+                            <label for="slide-2-2" class="slider-dot" aria-label="이미지 2"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>미니게임 2: 반응속도 측정 게임</h3>
@@ -93,13 +119,24 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- 이미지는 dynamic-image-loader.js에서 동적으로 로드됩니다 -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="3">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>이미지 로딩 중...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="이전 이미지">&lt;</button>
-                        <button class="slider-nav next" aria-label="다음 이미지">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-3" id="slide-3-1" checked>
+                        <input type="radio" name="slider-3" id="slide-3-2">
+                        <input type="radio" name="slider-3" id="slide-3-3">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-3-1" class="slider-dot" aria-label="이미지 1"></label>
+                            <label for="slide-3-2" class="slider-dot" aria-label="이미지 2"></label>
+                            <label for="slide-3-3" class="slider-dot" aria-label="이미지 3"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>미니게임 3: 수박 게임 <span class="text-danger">(개발중)</span></h3>
@@ -107,13 +144,22 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- 이미지는 dynamic-image-loader.js에서 동적으로 로드됩니다 -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="4">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>이미지 로딩 중...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="이전 이미지">&lt;</button>
-                        <button class="slider-nav next" aria-label="다음 이미지">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-4" id="slide-4-1" checked>
+                        <input type="radio" name="slider-4" id="slide-4-2">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-4-1" class="slider-dot" aria-label="이미지 1"></label>
+                            <label for="slide-4-2" class="slider-dot" aria-label="이미지 2"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>미니게임 4: 피코파크 <span class="text-danger">(개발중)</span></h3>
@@ -121,13 +167,24 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- 이미지는 dynamic-image-loader.js에서 동적으로 로드됩니다 -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="5">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>이미지 로딩 중...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="이전 이미지">&lt;</button>
-                        <button class="slider-nav next" aria-label="다음 이미지">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-5" id="slide-5-1" checked>
+                        <input type="radio" name="slider-5" id="slide-5-2">
+                        <input type="radio" name="slider-5" id="slide-5-3">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-5-1" class="slider-dot" aria-label="이미지 1"></label>
+                            <label for="slide-5-2" class="slider-dot" aria-label="이미지 2"></label>
+                            <label for="slide-5-3" class="slider-dot" aria-label="이미지 3"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>미니게임 5: 모션 인식 <span class="text-danger">(개발중)</span></h3>
@@ -135,13 +192,22 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- 이미지는 dynamic-image-loader.js에서 동적으로 로드됩니다 -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="6">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>이미지 로딩 중...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="이전 이미지">&lt;</button>
-                        <button class="slider-nav next" aria-label="다음 이미지">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-6" id="slide-6-1" checked>
+                        <input type="radio" name="slider-6" id="slide-6-2">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-6-1" class="slider-dot" aria-label="이미지 1"></label>
+                            <label for="slide-6-2" class="slider-dot" aria-label="이미지 2"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>미니게임 6: 분류게임 <span class="text-danger">(개발중)</span></h3>
@@ -149,13 +215,24 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- 이미지는 dynamic-image-loader.js에서 동적으로 로드됩니다 -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="7">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>이미지 로딩 중...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="이전 이미지">&lt;</button>
-                        <button class="slider-nav next" aria-label="다음 이미지">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-7" id="slide-7-1" checked>
+                        <input type="radio" name="slider-7" id="slide-7-2">
+                        <input type="radio" name="slider-7" id="slide-7-3">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-7-1" class="slider-dot" aria-label="이미지 1"></label>
+                            <label for="slide-7-2" class="slider-dot" aria-label="이미지 2"></label>
+                            <label for="slide-7-3" class="slider-dot" aria-label="이미지 3"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>미니게임 7: 화성 탈출 <span class="text-danger">(개발중)</span></h3>
@@ -163,16 +240,25 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- 이미지는 dynamic-image-loader.js에서 동적으로 로드됩니다 -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="8">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>이미지 로딩 중...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="이전 이미지">&lt;</button>
-                        <button class="slider-nav next" aria-label="다음 이미지">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-8" id="slide-8-1" checked>
+                        <input type="radio" name="slider-8" id="slide-8-2">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-8-1" class="slider-dot" aria-label="이미지 1"></label>
+                            <label for="slide-8-2" class="slider-dot" aria-label="이미지 2"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
-                        <h3>미니게임 8: 슬라임 이터<span class="text-danger">(개발중)</span></h3>
+                        <h3>미니게임 8: 슬라임 이터 <span class="text-danger">(개발중)</span></h3>
                         <p>슬라임을 먹으며 성장하는 게임! 다양한 슬라임을 수집하고 최고 기록에 도전하세요.</p>
                     </div>
                 </div>
@@ -199,62 +285,65 @@
         <section id="activity-photos" class="section activity-photos-section">
             <h2>활동 사진</h2>
             <p>포테니티의 다양한 활동 모습을 사진으로 만나보세요!</p>
-            <div class="activity-gallery">
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-1.jpg" alt="동아리방 1">
-                    </div>
-                    <div class="photo-content">
-                        <h3>동아리방 내부</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-2.jpg" alt="동아리방 2">
-                    </div>
-                    <div class="photo-content">
-                        <h3>동아리방 내부</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-3.jpg" alt="동아리방 3">
-                    </div>
-                    <div class="photo-content">
-                        <h3>동아리방 내부</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-4.jpg" alt="동아리방 4">
-                    </div>
-                    <div class="photo-content">
-                        <h3>동아리방 내부</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-5.jpg" alt="동아리방 5">
-                    </div>
-                    <div class="photo-content">
-                        <h3>동아리방 내부</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/project-1.jpg" alt="새 프로젝트 시작 1">
-                    </div>
-                    <div class="photo-content">
-                        <h3>새 방학 프로젝트 발표회</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/project-2.jpg" alt="새 프로젝트 시작 2">
-                    </div>
-                    <div class="photo-content">
-                        <h3>새 방학 프로젝트 발표회</h3>
-                    </div>
+            
+            <!-- CSS-Only Photo Gallery with Scroll-Snap -->
+            <div class="css-photo-gallery">
+                <div class="photo-scroll-container">
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-1.jpg" alt="동아리방 내부 모습 1" loading="lazy">
+                        <div class="photo-info">
+                            <h3>동아리방 내부</h3>
+                            <p>포테니티의 주요 활동 공간</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-2.jpg" alt="동아리방 내부 모습 2" loading="lazy">
+                        <div class="photo-info">
+                            <h3>동아리방 내부</h3>
+                            <p>게임 개발에 집중하는 공간</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-3.jpg" alt="동아리방 내부 모습 3" loading="lazy">
+                        <div class="photo-info">
+                            <h3>동아리방 내부</h3>
+                            <p>협업과 소통의 장소</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-4.jpg" alt="동아리방 내부 모습 4" loading="lazy">
+                        <div class="photo-info">
+                            <h3>동아리방 내부</h3>
+                            <p>열정적인 학습 환경</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-5.jpg" alt="동아리방 내부 모습 5" loading="lazy">
+                        <div class="photo-info">
+                            <h3>동아리방 내부</h3>
+                            <p>편안한 휴식 공간</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/project-1.jpg" alt="새 방학 프로젝트 발표회 1" loading="lazy">
+                        <div class="photo-info">
+                            <h3>방학 프로젝트 발표회</h3>
+                            <p>창의적인 아이디어 대회</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/project-2.jpg" alt="새 방학 프로젝트 발표회 2" loading="lazy">
+                        <div class="photo-info">
+                            <h3>방학 프로젝트 발표회</h3>
+                            <p>팀워크와 협력의 시간</p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -285,8 +374,7 @@
         <p>&copy; <span id="current-year"></span> 포테니티. All Rights Reserved.</p>
     </footer>
 
-    <script src="js/dynamic-image-loader.js"></script>
-    <script src="js/image-slider.js"></script>
+    <script src="js/minimal-image-loader.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>

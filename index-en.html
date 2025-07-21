@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="The official website of Potanity, Kangwon National University's central game development club, where we grow together through creative and fun projects.">
+    <meta name="description" content="The official website of Potanity, Kangwon National University's central game development club, where we grow together through creative and fun projects.">
+    <meta name="keywords" content="Kangwon National University, game development, club, Potanity, Unity, game creation">
+    <meta name="author" content="Kangwon National University Game Development Club Potanity">
+    <meta name="robots" content="index, follow">
     <title>Kangwon National University Game Development Club Potanity - Official Website</title>
+    <link rel="preload" href="css/main.css" as="style">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -60,8 +63,8 @@
             <h2>Game Play</h2>
             <p>Click the button below to instantly enjoy the games we've made in your web browser!</p>
 
-            <a href="game/index.html" class="game-play-button" target="_blank">
-                <img src="images/game-play-button.png" alt="Game Play Start Button Image">
+            <a href="game/index.html" class="game-play-button" target="_blank" rel="noopener" aria-label="Start Playing Potanity Games">
+                <img src="images/game-play-button.png" alt="Game Play Start Button Image" loading="lazy">
             </a>
         </section>
 
@@ -70,13 +73,26 @@
             <p>Discover minigames developed by Potanity!</p>
             <div class="minigame-list-vertical">
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- Images are loaded dynamically by dynamic-image-loader.js -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="1">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
-                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-1" id="slide-en-1-1" checked>
+                        <input type="radio" name="slider-1" id="slide-en-1-2">
+                        <input type="radio" name="slider-1" id="slide-en-1-3">
+                        <input type="radio" name="slider-1" id="slide-en-1-4">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-en-1-1" class="slider-dot" aria-label="Image 1"></label>
+                            <label for="slide-en-1-2" class="slider-dot" aria-label="Image 2"></label>
+                            <label for="slide-en-1-3" class="slider-dot" aria-label="Image 3"></label>
+                            <label for="slide-en-1-4" class="slider-dot" aria-label="Image 4"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>Minigame 1: Metal Slug</h3>
@@ -85,13 +101,22 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- Images are loaded dynamically by dynamic-image-loader.js -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="2">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
-                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-2" id="slide-en-2-1" checked>
+                        <input type="radio" name="slider-2" id="slide-en-2-2">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-en-2-1" class="slider-dot" aria-label="Image 1"></label>
+                            <label for="slide-en-2-2" class="slider-dot" aria-label="Image 2"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>Minigame 2: Reaction Speed Test Game</h3>
@@ -100,13 +125,24 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- Images are loaded dynamically by dynamic-image-loader.js -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="3">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
-                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-3" id="slide-en-3-1" checked>
+                        <input type="radio" name="slider-3" id="slide-en-3-2">
+                        <input type="radio" name="slider-3" id="slide-en-3-3">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-en-3-1" class="slider-dot" aria-label="Image 1"></label>
+                            <label for="slide-en-3-2" class="slider-dot" aria-label="Image 2"></label>
+                            <label for="slide-en-3-3" class="slider-dot" aria-label="Image 3"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>Minigame 3: Watermelon Game <span class="text-danger">(In Development)</span></h3>
@@ -115,13 +151,22 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- Images are loaded dynamically by dynamic-image-loader.js -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="4">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
-                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-4" id="slide-en-4-1" checked>
+                        <input type="radio" name="slider-4" id="slide-en-4-2">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-en-4-1" class="slider-dot" aria-label="Image 1"></label>
+                            <label for="slide-en-4-2" class="slider-dot" aria-label="Image 2"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>Minigame 4: Pico Park <span class="text-danger">(In Development)</span></h3>
@@ -130,13 +175,24 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- Images are loaded dynamically by dynamic-image-loader.js -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="5">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
-                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-5" id="slide-en-5-1" checked>
+                        <input type="radio" name="slider-5" id="slide-en-5-2">
+                        <input type="radio" name="slider-5" id="slide-en-5-3">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-en-5-1" class="slider-dot" aria-label="Image 1"></label>
+                            <label for="slide-en-5-2" class="slider-dot" aria-label="Image 2"></label>
+                            <label for="slide-en-5-3" class="slider-dot" aria-label="Image 3"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>Minigame 5: Motion Recognition <span class="text-danger">(In Development)</span></h3>
@@ -144,13 +200,22 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- Images are loaded dynamically by dynamic-image-loader.js -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="6">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
-                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-6" id="slide-en-6-1" checked>
+                        <input type="radio" name="slider-6" id="slide-en-6-2">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-en-6-1" class="slider-dot" aria-label="Image 1"></label>
+                            <label for="slide-en-6-2" class="slider-dot" aria-label="Image 2"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>Minigame 6: Sorting Game <span class="text-danger">(In Development)</span></h3>
@@ -159,13 +224,24 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- Images are loaded dynamically by dynamic-image-loader.js -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="7">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
-                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-7" id="slide-en-7-1" checked>
+                        <input type="radio" name="slider-7" id="slide-en-7-2">
+                        <input type="radio" name="slider-7" id="slide-en-7-3">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-en-7-1" class="slider-dot" aria-label="Image 1"></label>
+                            <label for="slide-en-7-2" class="slider-dot" aria-label="Image 2"></label>
+                            <label for="slide-en-7-3" class="slider-dot" aria-label="Image 3"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>Minigame 7: Mars Escape <span class="text-danger">(In Development)</span></h3>
@@ -174,13 +250,22 @@
                     </div>
                 </div>
                 <div class="minigame-item">
-                    <div class="image-slider">
-                        <div class="slider-container">
-                            <!-- Images are loaded dynamically by dynamic-image-loader.js -->
+                    <!-- CSS-Only Image Slider with Fallback -->
+                    <div class="css-image-slider" data-game="8">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
                         </div>
-                        <button class="slider-nav prev" aria-label="Previous Image">&lt;</button>
-                        <button class="slider-nav next" aria-label="Next Image">&gt;</button>
-                        <div class="slider-dots"></div>
+                        <!-- CSS-Only Navigation -->
+                        <input type="radio" name="slider-8" id="slide-en-8-1" checked>
+                        <input type="radio" name="slider-8" id="slide-en-8-2">
+                        
+                        <div class="slider-controls">
+                            <label for="slide-en-8-1" class="slider-dot" aria-label="Image 1"></label>
+                            <label for="slide-en-8-2" class="slider-dot" aria-label="Image 2"></label>
+                        </div>
                     </div>
                     <div class="minigame-content">
                         <h3>Minigame 8: Slime Eater <span class="text-danger">(In Development)</span></h3>
@@ -211,62 +296,65 @@
         <section id="activity-photos" class="section activity-photos-section">
             <h2>Activity Photos</h2>
             <p>Discover various activities of Potanity through photos!</p>
-            <div class="activity-gallery">
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-1.jpg" alt="Clubroom 1">
-                    </div>
-                    <div class="photo-content">
-                        <h3>Club Room Interior</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-2.jpg" alt="Clubroom 2">
-                    </div>
-                    <div class="photo-content">
-                        <h3>Club Room Interior</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-3.jpg" alt="Clubroom 3">
-                    </div>
-                    <div class="photo-content">
-                        <h3>Club Room Interior</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-4.jpg" alt="Clubroom 4">
-                    </div>
-                    <div class="photo-content">
-                        <h3>Club Room Interior</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/clubroom-5.jpg" alt="Clubroom 5">
-                    </div>
-                    <div class="photo-content">
-                        <h3>Club Room Interior</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/project-1.jpg" alt="New Project Start 1">
-                    </div>
-                    <div class="photo-content">
-                        <h3>New Vacation Project Presentation</h3>
-                    </div>
-                </div>
-                <div class="activity-photo-box">
-                    <div class="photo-image">
-                        <img src="images/activities/project-2.jpg" alt="New Project Start 2">
-                    </div>
-                    <div class="photo-content">
-                        <h3>New Vacation Project Presentation</h3>
-                    </div>
+            
+            <!-- CSS-Only Photo Gallery with Scroll-Snap -->
+            <div class="css-photo-gallery">
+                <div class="photo-scroll-container">
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-1.jpg" alt="Club room interior view 1" loading="lazy">
+                        <div class="photo-info">
+                            <h3>Club Room Interior</h3>
+                            <p>Main activity space of Potanity</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-2.jpg" alt="Club room interior view 2" loading="lazy">
+                        <div class="photo-info">
+                            <h3>Club Room Interior</h3>
+                            <p>Space for focused game development</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-3.jpg" alt="Club room interior view 3" loading="lazy">
+                        <div class="photo-info">
+                            <h3>Club Room Interior</h3>
+                            <p>Place for collaboration and communication</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-4.jpg" alt="Club room interior view 4" loading="lazy">
+                        <div class="photo-info">
+                            <h3>Club Room Interior</h3>
+                            <p>Passionate learning environment</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/clubroom-5.jpg" alt="Club room interior view 5" loading="lazy">
+                        <div class="photo-info">
+                            <h3>Club Room Interior</h3>
+                            <p>Comfortable relaxation space</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/project-1.jpg" alt="New vacation project presentation 1" loading="lazy">
+                        <div class="photo-info">
+                            <h3>Vacation Project Presentation</h3>
+                            <p>Creative idea competition</p>
+                        </div>
+                    </article>
+                    
+                    <article class="photo-card">
+                        <img src="images/activities/project-2.jpg" alt="New vacation project presentation 2" loading="lazy">
+                        <div class="photo-info">
+                            <h3>Vacation Project Presentation</h3>
+                            <p>Time for teamwork and collaboration</p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -297,8 +385,7 @@
         <p>&copy; <span id="current-year"></span> Potanity. All Rights Reserved.</p>
     </footer>
 
-    <script src="js/dynamic-image-loader.js"></script>
-    <script src="js/image-slider.js"></script>
+    <script src="js/minimal-image-loader.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>

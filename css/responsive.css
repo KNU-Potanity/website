@@ -70,6 +70,23 @@
         gap: 1rem;
     }
 
+    /* CSS-Only Slider Mobile Styles */
+    .css-image-slider {
+        width: 100%;
+        height: 200px;
+    }
+
+    .css-image-slider .slider-controls {
+        bottom: 0.5rem;
+        padding: 0.375rem;
+    }
+
+    .css-image-slider .slider-dot {
+        width: 0.625rem;
+        height: 0.625rem;
+    }
+
+    /* Legacy slider support */
     .image-slider {
         width: 100%;
         height: 200px;
@@ -83,6 +100,31 @@
 
     .slider-container {
         padding-bottom: 70%;
+    }
+
+    /* CSS Photo Gallery Mobile */
+    .css-photo-gallery {
+        margin-top: 1.5rem;
+    }
+
+    .photo-card {
+        flex: 0 0 min(350px, 90vw);
+    }
+
+    .photo-card img {
+        height: 200px;
+    }
+
+    .photo-info {
+        padding: 1.25rem;
+    }
+
+    .photo-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .photo-info p {
+        font-size: 0.9rem;
     }
 
     .game-play-button {
@@ -155,163 +197,46 @@
     }
 }
 
-/* ===== 반응형 디자인 ===== */
+/* ===== Additional Responsive Breakpoints ===== */
 
-/* 태블릿 (768px 이하) */
-@media (max-width: 768px) {
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
     .container {
-        width: 95%;
-        padding: 1.5rem;
-        margin: 1rem auto 2rem;
-    }
-
-    .section h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    /* 활동 갤러리 반응형 */
-    .activity-gallery {
-        justify-content: center;
-    }
-
-    .activity-card {
-        max-width: 100%;
-    }
-
-    .activity-card .image-slider {
-        height: 300px;
-    }
-
-    .activity-content {
-        padding: 1.5rem;
-    }
-
-    .activity-content h3 {
-        font-size: 1.3rem;
-    }
-
-    /* 미니게임 리스트 반응형 */
-    .minigame-item {
-        flex-direction: column;
-        gap: 1rem;
+        width: 80%;
+        max-width: 1200px;
     }
 
     .minigame-item .image-slider {
-        width: 100%;
-        height: 200px;
+        width: 350px;
+        height: 350px;
     }
 
-    /* 게임 플레이 버튼 반응형 */
-    .game-play-button {
-        max-width: 80%;
+    .activity-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
 }
 
-/* 모바일 (480px 이하) */
-@media (max-width: 480px) {
-    .container {
-        width: 98%;
-        padding: 1rem;
-        margin: 0.5rem auto 1rem;
-    }
-
-    header {
-        padding: 0.75rem 1rem;
-    }
-
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    .section h2 {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-    }
-
-    /* 활동 갤러리 모바일 */
+/* Large Tablet (1024px+) */
+@media (min-width: 1024px) {
     .activity-gallery {
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+    }
+}
+
+/* Tablet (769px - 1023px) - Merged unique styles */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .container {
+        width: 90%;
+        padding: 2rem;
     }
 
-    .activity-gallery .image-slider {
-        height: 250px;
+    .activity-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
     }
 
-    .image-comment {
-        padding: 1rem;
-    }
-
-    .image-comment h3 {
-        font-size: 1.1rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .image-comment p {
-        font-size: 0.9rem;
-    }
-
-    /* 미니게임 아이템 모바일 */
-    .minigame-item {
-        padding: 1rem;
-    }
-
-    .minigame-item .image-slider {
+    .activity-photo-box .photo-image {
         height: 180px;
-    }
-
-    .minigame-content h3 {
-        font-size: 1.1rem;
-    }
-
-    .minigame-content p {
-        font-size: 0.9rem;
-    }
-
-    /* 게임 플레이 버튼 모바일 */
-    .game-play-button {
-        max-width: 90%;
-    }
-
-    .game-play-button-container p {
-        font-size: 1rem;
-    }
-
-    /* 슬라이더 네비게이션 모바일 */
-    .slider-nav {
-        padding: 0.5rem 0.25rem;
-        font-size: 1rem;
-    }
-
-    .slider-dots {
-        bottom: 0.5rem;
-        padding: 0.25rem;
-    }
-
-    .dot {
-        width: 0.375rem;
-        height: 0.375rem;
-    }
-
-    /* 활동 갤러리 모바일 */
-    .activity-card {
-        max-width: 100%;
-    }
-
-    .activity-card .image-slider {
-        height: 250px;
-    }
-
-    .activity-content {
-        padding: 1rem;
-    }
-
-    .activity-content h3 {
-        font-size: 1.2rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .activity-content p {
-        font-size: 0.9rem;
     }
 }
