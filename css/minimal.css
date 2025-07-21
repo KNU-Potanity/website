@@ -243,8 +243,11 @@ h2 {
 
 .photo-item img {
     width: 100%;
-    height: 280px;
-    object-fit: cover;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    display: block;
+    background-color: #f0f0f0;
 }
 
 .photo-item h4 {
