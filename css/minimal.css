@@ -229,21 +229,21 @@ h2 {
 /* Photo Grid */
 .simple-photo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
 }
 
 .photo-item {
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid #eee;
 }
 
 .photo-item img {
     width: 100%;
-    height: 200px;
+    height: 280px;
     object-fit: cover;
 }
 
