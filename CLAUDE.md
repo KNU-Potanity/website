@@ -84,6 +84,12 @@ images/
 - GitHub organization: https://github.com/KNU-Potanity
 - Club room location: 한울관 (Hanul Building), Kangwon National University
 
+## Important Instructions for Claude
+
+- **BE CONCISE**: Avoid unnecessary explanations or verbose responses. Just execute the requested tasks.
+- **NO COMMENTARY**: Don't explain what you did unless specifically asked.
+- **JUST DO IT**: When given a task, complete it without preamble or postscript.
+
 ## Common Tasks
 
 ### Adding New Minigame
