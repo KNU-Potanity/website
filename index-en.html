@@ -15,10 +15,36 @@
 <body>
     <header>
         <h1>Potanity</h1>
-        <div class="header-controls-center">
-            <nav class="lang-switch" aria-label="Language Switch">
-                <a href="index.html">Korean</a> | <a href="index-en.html">English</a>
-            </nav>
+        <nav class="dept-nav" aria-label="Division menu">
+            <span class="dept-item">
+                <button type="button" class="dept-link" data-target="introduction">Game Division</button>
+                <ul class="dept-menu" aria-label="Game Division menu">
+                    <li><button type="button" class="dept-menu-link" data-target="introduction">Club Introduction</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="regular-activities">Regular Activities</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="game-play">Game Play</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="minigames">Potanity Minigame Introduction</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="history">Club History</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="must-play-games">Must-Play Games Chosen by Members</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="activity-photos">Activity Photos</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="learning-resources">Learning Resource Center</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="contact">Contact</button></li>
+                </ul>
+            </span>
+            <span class="dept-sep" aria-hidden="true">|</span>
+            <button type="button" class="dept-link">Esports Division</button>
+            <span class="dept-sep" aria-hidden="true">|</span>
+            <button type="button" class="dept-link">Media Division</button>
+        </nav>
+        <div class="lang-dropdown">
+            <button type="button" class="lang-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false"
+                aria-controls="langMenu">
+                <span class="lang-current">English</span>
+                <span class="lang-caret" aria-hidden="true">▼</span>
+            </button>
+            <ul class="lang-menu" id="langMenu" aria-label="Select language" hidden>
+                <li><a href="index.html">한국어</a></li>
+                <li><a href="index-en.html">English</a></li>
+            </ul>
         </div>
     </header>
 
@@ -40,15 +66,8 @@
             <h2>Regular Activities</h2>
             <ul>
                 <li><strong>⏰ Regular Activity Hours:</strong> Weekdays 6 PM - 8:30 PM (All activities are voluntary)</li>
-                <li><strong>👥 Team Projects</strong></li>
-                <ul>
-                    <li><strong>📅 Days:</strong> Every Monday, Tuesday, Thursday</li>
-                    <li><strong>🕹️ Types:</strong> Mini games for KNU Arcade, games released on Steam etc.</li>
-                    <li><strong>🚀 (2026 Spring) Steam release project start dates:</strong> March 25, first week of June (tentative)</li>
-                    <li><strong>🎮 (2026 Spring) KNU Arcade mini game project start dates:</strong> March 16, first week of May (tentative)</li>
-                </ul>
-                <li><strong>🍕 Food Day Schedule:</strong> 2nd week of April, 1st week of May, 3rd week of May, 1st week of June (tentative)</li>
-                <li><strong>🎓 Game Development Lectures:</strong> 2nd Friday, 4th Friday (tentative)</li>
+                <li><strong>🤝 Team Projects:</strong> Twice a week (decided after discussion among team members)</li>
+                <li><strong>🍕 Food Day Schedule:</strong> Once every two weeks (decided after discussion among members)</li>
             </ul>
         </section>
 
@@ -573,6 +592,70 @@
     <script src="js/slider.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        (function () {
+            var toggle = document.getElementById('langToggle');
+            var menu = document.getElementById('langMenu');
+            if (!toggle || !menu) return;
+
+            function setOpen(open) {
+                menu.hidden = !open;
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                setOpen(menu.hidden);
+            });
+
+            menu.addEventListener('click', function () {
+                setOpen(false);
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!menu.hidden && !toggle.contains(e.target) && !menu.contains(e.target)) {
+                    setOpen(false);
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') setOpen(false);
+            });
+        })();
+
+        (function () {
+            var links = document.querySelectorAll('.dept-link');
+            var menuLinks = document.querySelectorAll('.dept-menu-link');
+            var sections = document.querySelectorAll('main .section');
+
+            function showSection(id) {
+                sections.forEach(function (s) {
+                    s.hidden = (s.id !== id);
+                });
+                menuLinks.forEach(function (m) {
+                    m.classList.toggle('active', m.getAttribute('data-target') === id);
+                });
+            }
+
+            links.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    links.forEach(function (l) { l.classList.remove('active'); });
+                    link.classList.add('active');
+                });
+            });
+
+            document.querySelectorAll('.dept-link[data-target], .dept-menu-link[data-target]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    showSection(btn.getAttribute('data-target'));
+                });
+            });
+
+            var gameDept = document.querySelector('.dept-link[data-target]');
+            if (gameDept) gameDept.classList.add('active');
+            if (sections.length) {
+                showSection(sections[0].id);
+            }
+        })();
     </script>
 </body>
 

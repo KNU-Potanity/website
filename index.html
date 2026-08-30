@@ -15,10 +15,36 @@
 <body>
     <header>
         <h1>포테니티</h1>
-        <div class="header-controls-center">
-            <nav class="lang-switch" aria-label="언어 전환">
-                <a href="index.html">한국어</a> | <a href="index-en.html">English</a>
-            </nav>
+        <nav class="dept-nav" aria-label="부서 메뉴">
+            <span class="dept-item">
+                <button type="button" class="dept-link" data-target="introduction">게임부</button>
+                <ul class="dept-menu" aria-label="게임부 메뉴">
+                    <li><button type="button" class="dept-menu-link" data-target="introduction">동아리 소개</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="regular-activities">정기 활동</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="game-play">게임 플레이</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="minigames">포테니티 미니게임 소개</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="history">동아리 연혁</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="must-play-games">부원들이 뽑은 머스트플레이 게임</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="activity-photos">활동 사진</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="learning-resources">학습 자료 센터</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="contact">연락처</button></li>
+                </ul>
+            </span>
+            <span class="dept-sep" aria-hidden="true">|</span>
+            <button type="button" class="dept-link">이스포츠부</button>
+            <span class="dept-sep" aria-hidden="true">|</span>
+            <button type="button" class="dept-link">미디어부</button>
+        </nav>
+        <div class="lang-dropdown">
+            <button type="button" class="lang-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false"
+                aria-controls="langMenu">
+                <span class="lang-current">한국어</span>
+                <span class="lang-caret" aria-hidden="true">▼</span>
+            </button>
+            <ul class="lang-menu" id="langMenu" aria-label="언어 선택" hidden>
+                <li><a href="index.html">한국어</a></li>
+                <li><a href="index-en.html">English</a></li>
+            </ul>
         </div>
     </header>
 
@@ -39,15 +65,8 @@
             <h2>정기 활동</h2>
             <ul>
                 <li><strong>⏰ 정기 활동 시간:</strong> 평일 오후 6시 ~ 8시 30분 (모든 활동은 자율 참여)</li>
-                <li><strong>👥 팀 프로젝트</strong></li>
-                <ul>
-                    <li><strong>📅 날짜 : </strong>매주 월, 화, 목요일</li>
-                    <li><strong>🕹️ 종류 : </strong>KNU 오락실에 들어가는 미니 게임, 스팀 등에 출시하는 게임</li>
-                    <li><strong>🚀 (2026년 1학기) 스팀 등에 출시하는 게임 프로젝트 시작 기간 : </strong>3월 25일, 6월 첫 째 주(임시)</li>
-                    <li><strong>🎮 (2026년 1학기) KNU 오락실에 들어가는 미니 게임 프로젝트 시작 기간 : </strong>3월 16일, 5월 첫 째 주(임시)</li>
-                </ul>
-                <li><strong>🍕 푸드데이 일정 : </strong>4월 2주차, 5월 1주차, 5월 3주차, 6월 1주차(임시)</li>
-                <li><strong>🎓 게임 개발 강의 : </strong>둘째 주 금요일, 넷째 주 금요일(임시)</li>
+                <li><strong>🤝 팀 프로젝트 :</strong> 주에 2회(팀원들끼리 상의 후 결정)</li>
+                <li><strong>🍕 푸드데이 일정 :</strong> 2주에 한 번(부원들끼리 상의 후 결정)</li>
             </ul>
         </section>
 
@@ -617,6 +636,70 @@
     <script src="js/slider.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        (function () {
+            var toggle = document.getElementById('langToggle');
+            var menu = document.getElementById('langMenu');
+            if (!toggle || !menu) return;
+
+            function setOpen(open) {
+                menu.hidden = !open;
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                setOpen(menu.hidden);
+            });
+
+            menu.addEventListener('click', function () {
+                setOpen(false);
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!menu.hidden && !toggle.contains(e.target) && !menu.contains(e.target)) {
+                    setOpen(false);
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') setOpen(false);
+            });
+        })();
+
+        (function () {
+            var links = document.querySelectorAll('.dept-link');
+            var menuLinks = document.querySelectorAll('.dept-menu-link');
+            var sections = document.querySelectorAll('main .section');
+
+            function showSection(id) {
+                sections.forEach(function (s) {
+                    s.hidden = (s.id !== id);
+                });
+                menuLinks.forEach(function (m) {
+                    m.classList.toggle('active', m.getAttribute('data-target') === id);
+                });
+            }
+
+            links.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    links.forEach(function (l) { l.classList.remove('active'); });
+                    link.classList.add('active');
+                });
+            });
+
+            document.querySelectorAll('.dept-link[data-target], .dept-menu-link[data-target]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    showSection(btn.getAttribute('data-target'));
+                });
+            });
+
+            var gameDept = document.querySelector('.dept-link[data-target]');
+            if (gameDept) gameDept.classList.add('active');
+            if (sections.length) {
+                showSection(sections[0].id);
+            }
+        })();
     </script>
 </body>
 
