@@ -20,13 +20,14 @@
                 <button type="button" class="dept-link" data-target="introduction">Game Division</button>
                 <ul class="dept-menu" aria-label="Game Division menu">
                     <li><button type="button" class="dept-menu-link" data-target="introduction">Club Introduction</button></li>
-                    <li><button type="button" class="dept-menu-link" data-target="regular-activities">Regular Activities</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="minigames">Potanity Game Introduction</button></li>
                     <li><button type="button" class="dept-menu-link" data-target="game-play">Game Play</button></li>
-                    <li><button type="button" class="dept-menu-link" data-target="minigames">Potanity Minigame Introduction</button></li>
-                    <li><button type="button" class="dept-menu-link" data-target="history">Club History</button></li>
-                    <li><button type="button" class="dept-menu-link" data-target="must-play-games">Must-Play Games Chosen by Members</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="regular-activities">Regular Activities</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="team-project">Team Projects</button></li>
                     <li><button type="button" class="dept-menu-link" data-target="activity-photos">Activity Photos</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="must-play-games">Must-Play Games Chosen by Members</button></li>
                     <li><button type="button" class="dept-menu-link" data-target="learning-resources">Learning Resource Center</button></li>
+                    <li><button type="button" class="dept-menu-link" data-target="history">Club History</button></li>
                     <li><button type="button" class="dept-menu-link" data-target="contact">Contact</button></li>
                 </ul>
             </span>
@@ -38,10 +39,10 @@
         <div class="lang-dropdown">
             <button type="button" class="lang-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false"
                 aria-controls="langMenu">
-                <span class="lang-current">English</span>
+                <span class="lang-current">Languages</span>
                 <span class="lang-caret" aria-hidden="true">▼</span>
             </button>
-            <ul class="lang-menu" id="langMenu" aria-label="Select language" hidden>
+            <ul class="lang-menu" id="langMenu" aria-label="Languages" hidden>
                 <li><a href="index.html">한국어</a></li>
                 <li><a href="index-en.html">English</a></li>
             </ul>
@@ -71,6 +72,26 @@
             </ul>
         </section>
 
+        <section id="team-project" class="section">
+            <h2>Team Projects</h2>
+            <ul>
+                <li><strong>🧩 Provided by the club:</strong> The club implements the common elements of a specific game genre in advance and provides them.</li>
+                <li><strong>🧭 Project direction:</strong> Based on what is provided, teams discuss and decide additional elements together, then reflect them in the game.</li>
+                <li><strong>✅ Completed genres:</strong> Clicker game, platformer game</li>
+                <li><strong>📅 Start timing:</strong> Beginning of the semester, after the vacation starts</li>
+                <li><strong>🔀 Group division:</strong> Completion-focused group / Rule-focused group</li>
+                <li><strong>🏁 Completion-focused group goal:</strong> Completion itself is the goal. Focused on finishing, so work is relatively relaxed.</li>
+                <li><strong>📐 Rule-focused group goal:</strong> Following development rules such as SOLID principles so that even large-scale games are built with fewer problems.</li>
+                <li><strong>⚖️ Difference between the two groups:</strong>
+                    <ul>
+                        <li><strong>Programming:</strong> Additionally apply SOLID principles and specific syntax</li>
+                        <li><strong>Design:</strong> Organize the numeric values used in the game in a spreadsheet</li>
+                        <li><strong>Art:</strong> Unify animation specifications</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
         <section id="game-play" class="section game-play-button-container">
             <h2>Game Play</h2>
             <p>Click the button below to instantly enjoy the games we've made in your web browser!</p>
@@ -81,9 +102,15 @@
         </section>
 
         <section id="minigames" class="section minigames-section">
-            <h2>Potanity Minigame Introduction</h2>
-            <p>Discover minigames developed by Potanity!</p>
-            <div class="minigame-list-vertical">
+            <h2>Potanity Game Introduction</h2>
+            <p>Discover games developed by Potanity!</p>
+            <div class="minigame-year-nav">
+                <button type="button" class="year-nav-btn" id="minigamePrevYear" aria-label="Previous period">&lt;</button>
+                <span class="year-nav-label" id="minigameYearLabel"></span>
+                <button type="button" class="year-nav-btn" id="minigameNextYear" aria-label="Next period">&gt;</button>
+            </div>
+            <div class="minigame-list-vertical" id="minigameYearList">
+                <p class="minigame-empty" hidden>No minigames were released during this period.</p>
                 <div class="minigame-item">
                     <!-- JavaScript Image Slider -->
                     <div class="image-slider" data-game="1">
@@ -98,7 +125,7 @@
                         <div class="slider-dots"></div>
                     </div>
                     <div class="minigame-content">
-                        <h3>Minigame 1: Metal Slug</h3>
+                        <h3>Metal Slug</h3>
                         <p>An action shooting game paying homage to the classic masterpiece Metal Slug. Clear various
                             weapons and stages to defeat enemies!</p>
                     </div>
@@ -117,11 +144,20 @@
                         <div class="slider-dots"></div>
                     </div>
                     <div class="minigame-content">
-                        <h3>Minigame 2: Reaction Speed Test Game</h3>
+                        <h3>Reaction Speed Test Game</h3>
                         <p>When a signal appears on the screen, click as quickly as possible to measure your reaction
                             speed! Challenge your reflexes.</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="minigame-dev">
+                <button type="button" class="history-toggle" aria-expanded="false">
+                    <span>In Development</span>
+                    <span class="history-caret" aria-hidden="true">▼</span>
+                </button>
+                <div class="history-panel" hidden>
+                    <div class="minigame-list-vertical">
                 <div class="minigame-item">
                     <!-- JavaScript Image Slider -->
                     <div class="image-slider" data-game="3">
@@ -136,7 +172,7 @@
                         <div class="slider-dots"></div>
                     </div>
                     <div class="minigame-content">
-                        <h3>Minigame 3: Watermelon Game <span class="text-danger">(In Development)</span></h3>
+                        <h3>Watermelon Game <span class="text-danger">(In Development)</span></h3>
                         <p>A puzzle game where you stack fruits to make a watermelon! Strategically stack fruits to aim
                             for the highest score.</p>
                     </div>
@@ -155,7 +191,7 @@
                         <div class="slider-dots"></div>
                     </div>
                     <div class="minigame-content">
-                        <h3>Minigame 4: Pico Park <span class="text-danger">(In Development)</span></h3>
+                        <h3>Pico Park <span class="text-danger">(In Development)</span></h3>
                         <p>A multiplayer puzzle game where cooperation is key! Work together with friends to clear
                             stages.</p>
                     </div>
@@ -174,7 +210,7 @@
                         <div class="slider-dots"></div>
                     </div>
                     <div class="minigame-content">
-                        <h3>Minigame 5: Motion Recognition <span class="text-danger">(In Development)</span></h3>
+                        <h3>Motion Recognition <span class="text-danger">(In Development)</span></h3>
                         <p>A motion recognition game using a webcam! Move your body to complete various missions.</p>
                     </div>
                 </div>
@@ -192,7 +228,7 @@
                         <div class="slider-dots"></div>
                     </div>
                     <div class="minigame-content">
-                        <h3>Minigame 6: Sorting Game <span class="text-danger">(In Development)</span></h3>
+                        <h3>Sorting Game <span class="text-danger">(In Development)</span></h3>
                         <p>A game where you quickly sort given objects into the correct categories! Test your agility
                             and concentration.</p>
                     </div>
@@ -211,7 +247,7 @@
                         <div class="slider-dots"></div>
                     </div>
                     <div class="minigame-content">
-                        <h3>Minigame 7: Mars Escape <span class="text-danger">(In Development)</span></h3>
+                        <h3>Mars Escape <span class="text-danger">(In Development)</span></h3>
                         <p>A survival game where you survive in a hot desert! Manage limited resources and survive as
                             long as possible.</p>
                     </div>
@@ -230,9 +266,11 @@
                         <div class="slider-dots"></div>
                     </div>
                     <div class="minigame-content">
-                        <h3>Minigame 8: Slime Eater <span class="text-danger">(In Development)</span></h3>
+                        <h3>Slime Eater <span class="text-danger">(In Development)</span></h3>
                         <p>A game where you grow by eating slimes! Collect various slimes and challenge the highest
                             record.</p>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
@@ -240,28 +278,66 @@
 
         <section id="history" class="section">
             <h2>Club History</h2>
-            <ul>
-                <li><strong>2024 Summer Vacation:</strong> Potanity Club Establishment</li>
-                <li><strong>2024 2nd Semester:</strong> Focus on Internal Club Study Sessions</li>
-                <li><strong>2024 Winter Vacation:</strong> Metal Slug Game Development</li>
-                <li><strong>2025 1st Semester:</strong>
-                    <ul>
-                        <li>Regular Activities Begin</li>
-                        <li>Study Sessions</li>
-                        <li>Other Minigame Development</li>
-                        <li>School Event Participation and Game Demonstrations</li>
-                    </ul>
-                </li>
-                <li><strong>2025 Summer Vacation:</strong> Dilemma Dungeon Development</li>
-                <li><strong>2025 2nd Semester:</strong> Dilemma Dungeon, released on Steam</li>
-                <li><strong>2026 1st Semester:</strong>
-                    <ul>
-                        <li>Dilemma Dungeon exhibited at PlayX4</li>
-                        <li>Mini game 'Space Gold Rush (tentative title)' production begins</li>
-                        <li>March project production begins</li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="history-accordion">
+                <div class="history-item">
+                    <button type="button" class="history-toggle" aria-expanded="false">
+                        <span>2024</span>
+                        <span class="history-caret" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="history-panel" hidden>
+                        <ul>
+                            <li>Potanity club established</li>
+                            <li>Focused on internal club study sessions</li>
+                            <li>Metal Slug game development</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <button type="button" class="history-toggle" aria-expanded="false">
+                        <span>2025</span>
+                        <span class="history-caret" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="history-panel" hidden>
+                        <ul>
+                            <li>Regular activities begin</li>
+                            <li>Study sessions</li>
+                            <li>Other minigame development</li>
+                            <li>School event participation and game demonstrations</li>
+                            <li>2025 Summer Vacation: Dilemma Dungeon development</li>
+                            <li>2025 2nd Semester: Dilemma Dungeon released on Steam</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <button type="button" class="history-toggle" aria-expanded="false">
+                        <span>2026 1st Semester</span>
+                        <span class="history-caret" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="history-panel" hidden>
+                        <ul>
+                            <li>Dilemma Dungeon exhibited at PlayX4</li>
+                            <li>Mini game 'Space Gold Rush (tentative title)' production begins</li>
+                            <li>Castle Survival (March project) production begins</li>
+                            <li>Castle Survival completed</li>
+                            <li>July project production begins</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <button type="button" class="history-toggle" aria-expanded="false">
+                        <span>2026 2nd Semester</span>
+                        <span class="history-caret" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="history-panel" hidden>
+                        <ul>
+                            <li>To be updated</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="must-play-games" class="section">
@@ -567,10 +643,6 @@
                 <a href="https://open.kakao.com/o/sOkg3D9h" target="_blank">open.kakao.com/o/sds7asbg</a>
             </p>
             <p>
-                <strong>Announcement Room:</strong>
-                <a href="https://open.kakao.com/o/g1XODgcg" target="_blank">open.kakao.com/o/g1XODgcg</a>
-            </p>
-            <p>
                 <strong>GitHub:</strong>
                 <a href="https://github.com/KNU-Potanity" target="_blank">github.com/KNU-Potanity</a>
             </p>
@@ -655,6 +727,79 @@
             if (sections.length) {
                 showSection(sections[0].id);
             }
+        })();
+
+        (function () {
+            var section = document.getElementById('minigames');
+            if (!section) return;
+            var prevBtn = document.getElementById('minigamePrevYear');
+            var nextBtn = document.getElementById('minigameNextYear');
+            var label = document.getElementById('minigameYearLabel');
+            var yearList = document.getElementById('minigameYearList');
+            var devWrap = section.querySelector('.minigame-dev');
+            var devList = devWrap ? devWrap.querySelector('.history-panel .minigame-list-vertical') : null;
+            var empty = section.querySelector('.minigame-empty');
+            var yearItems = yearList ? yearList.querySelectorAll('.minigame-item') : [];
+            var devItems = devList ? devList.querySelectorAll('.minigame-item') : [];
+            if (!prevBtn || !nextBtn || !label) return;
+
+            var years = [
+                { key: '2024', label: '2024' },
+                { key: '2025', label: '2025' },
+                { key: '2026-1', label: '2026 1st Semester' },
+                { key: '2026-2', label: '2026 2nd Semester' }
+            ];
+            // Minigame production year by number
+            var gameYear = {
+                '1': '2024',
+                '2': '2025', '3': '2025', '4': '2025', '5': '2025',
+                '6': '2025', '7': '2025', '8': '2025'
+            };
+            var idx = 0;
+
+            function filterByYear(list, key) {
+                var shown = 0;
+                list.forEach(function (item) {
+                    var slider = item.querySelector('.image-slider');
+                    var g = slider ? slider.getAttribute('data-game') : null;
+                    var match = g && gameYear[g] === key;
+                    item.hidden = !match;
+                    if (match) shown++;
+                });
+                return shown;
+            }
+
+            function render() {
+                var key = years[idx].key;
+                label.textContent = years[idx].label;
+                var completedShown = filterByYear(yearItems, key);
+                var devShown = filterByYear(devItems, key);
+                if (empty) empty.hidden = completedShown > 0;
+                if (devWrap) devWrap.hidden = devShown === 0;
+                prevBtn.disabled = idx === 0;
+                nextBtn.disabled = idx === years.length - 1;
+            }
+
+            prevBtn.addEventListener('click', function () {
+                if (idx > 0) { idx--; render(); }
+            });
+            nextBtn.addEventListener('click', function () {
+                if (idx < years.length - 1) { idx++; render(); }
+            });
+
+            render();
+        })();
+
+        (function () {
+            document.querySelectorAll('.history-toggle').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var panel = btn.nextElementSibling;
+                    if (!panel) return;
+                    var willOpen = panel.hidden;
+                    panel.hidden = !willOpen;
+                    btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+                });
+            });
         })();
     </script>
 </body>
