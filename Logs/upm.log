@@ -1,24 +1,4 @@
-[2026-08-30T10:58:50.527Z][INFO] Command-line: D:\\Unity\\Hub\\6000.5.3f1\\Editor\\Data\\Resources\\PackageManager\\Server\\UnityPackageManager.exe server -s 20776 --ipc-path Unity-Upm-20776 -l 2 --log-file D:\\NewUnity\\website/Logs/upm.log
-[2026-08-30T10:58:50.583Z][INFO] IPC server started (IPC path=Unity-Upm-20776).
-[2026-08-30T10:58:50.584Z][INFO] Hint: To connect to this UPM instance, launch Unity with the command-line parameter -upmIpcPath Upm-20776.
-[2026-08-30T10:59:23.957Z][INFO] project:list-packages <-- Request received
-params: {}
-[2026-08-30T10:59:24.124Z][INFO] project:list-packages <-- Request received
-params: {}
-[2026-08-30T10:59:24.138Z][INFO] config:project:get-registries <-- Request received
-params: {}
-[2026-08-30T10:59:24.417Z][INFO] config:project:get-registries --> 200 (279 ms)
-[2026-08-30T10:59:24.608Z][INFO] project:list-packages --> 200 (485 ms)
-[2026-08-30T10:59:24.608Z][INFO] project:list-packages --> 200 (651 ms)
-[2026-08-30T10:59:32.830Z][INFO] project:list-packages <-- Request received
-params: {}
-[2026-08-30T10:59:32.856Z][INFO] project:list-packages <-- Request received
-params: {}
-[2026-08-30T10:59:32.958Z][INFO] project:list-packages --> 200 (128 ms)
-[2026-08-30T10:59:32.958Z][INFO] config:project:get-registries <-- Request received
-params: {}
-[2026-08-30T10:59:32.990Z][INFO] config:project:get-registries --> 200 (32 ms)
-[2026-08-30T10:59:32.991Z][INFO] project:list-packages --> 200 (135 ms)
-[2026-08-30T10:59:39.152Z][INFO] project:list-packages <-- Request received
-params: {}
-[2026-08-30T10:59:39.257Z][INFO] project:list-packages --> 200 (105 ms)
+[2026-08-31T08:53:28.288Z][INFO] Command-line: D:\\Unity\\Hub\\6000.5.3f1\\Editor\\Data\\Resources\\PackageManager\\Server\\UnityPackageManager.exe server -s 10268 --ipc-path Unity-Upm-10268 -l 2 --log-file D:\\NewUnity\\website/Logs/upm.log
+[2026-08-31T08:53:28.367Z][INFO] IPC server started (IPC path=Unity-Upm-10268).
+[2026-08-31T08:53:28.368Z][INFO] Hint: To connect to this UPM instance, launch Unity with the command-line parameter -upmIpcPath Upm-10268.
+[2026-08-31T08:54:06.611Z][INFO] Shutting down UnityPackageManager.exe: parent process [10268] is no longer running.

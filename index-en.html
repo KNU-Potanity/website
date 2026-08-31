@@ -17,8 +17,8 @@
         <h1>Potanity</h1>
         <nav class="dept-nav" aria-label="Division menu">
             <span class="dept-item">
-                <button type="button" class="dept-link" data-target="introduction">Game Division</button>
-                <ul class="dept-menu" aria-label="Game Division menu">
+                <button type="button" class="dept-link" data-target="introduction">Development Division</button>
+                <ul class="dept-menu" aria-label="Development Division menu">
                     <li><button type="button" class="dept-menu-link" data-target="introduction">Club Introduction</button></li>
                     <li><button type="button" class="dept-menu-link" data-target="minigames">Potanity Game Introduction</button></li>
                     <li><button type="button" class="dept-menu-link" data-target="game-play">Game Play</button></li>
@@ -31,10 +31,6 @@
                     <li><button type="button" class="dept-menu-link" data-target="contact">Contact</button></li>
                 </ul>
             </span>
-            <span class="dept-sep" aria-hidden="true">|</span>
-            <button type="button" class="dept-link">Esports Division</button>
-            <span class="dept-sep" aria-hidden="true">|</span>
-            <button type="button" class="dept-link">Media Division</button>
         </nav>
         <div class="lang-dropdown">
             <button type="button" class="lang-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false"
@@ -147,6 +143,48 @@
                         <h3>Reaction Speed Test Game</h3>
                         <p>When a signal appears on the screen, click as quickly as possible to measure your reaction
                             speed! Challenge your reflexes.</p>
+                    </div>
+                </div>
+                <div class="minigame-item">
+                    <!-- JavaScript Image Slider -->
+                    <div class="image-slider" data-game="9">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="changeSlide(this, -1)" aria-label="Previous Image">&lt;</button>
+                        <button class="slider-btn next-btn" onclick="changeSlide(this, 1)" aria-label="Next Image">&gt;</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="minigame-content">
+                        <h3>Dilemma Dungeon</h3>
+                        <p>A cooperative roguelike dungeon-crawler. As you clear dungeons with your teammates, you face
+                            dilemma choices where the stronger you get, the weaker someone else becomes. Combine maps,
+                            classes, skills, and items that change every run to complete your build and break through the
+                            cursed dungeon.</p>
+                        <p>Steam link: <a href="https://store.steampowered.com/app/4062110/Dilemma_Dungeon/"
+                                target="_blank" rel="noopener">Dilemma Dungeon (Steam)</a></p>
+                    </div>
+                </div>
+                <div class="minigame-item">
+                    <!-- JavaScript Image Slider -->
+                    <div class="image-slider" data-game="10">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="changeSlide(this, -1)" aria-label="Previous Image">&lt;</button>
+                        <button class="slider-btn next-btn" onclick="changeSlide(this, 1)" aria-label="Next Image">&gt;</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="minigame-content">
+                        <h3>Castle Survival</h3>
+                        <p>Combine your castle and weapons to survive for 10 minutes, then defeat the boss to claim
+                            victory!</p>
                     </div>
                 </div>
             </div>
@@ -269,6 +307,42 @@
                         <h3>Slime Eater <span class="text-danger">(In Development)</span></h3>
                         <p>A game where you grow by eating slimes! Collect various slimes and challenge the highest
                             record.</p>
+                    </div>
+                </div>
+                <div class="minigame-item">
+                    <!-- JavaScript Image Slider -->
+                    <div class="image-slider" data-game="11">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="changeSlide(this, -1)" aria-label="Previous Image">&lt;</button>
+                        <button class="slider-btn next-btn" onclick="changeSlide(this, 1)" aria-label="Next Image">&gt;</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="minigame-content">
+                        <h3>Space Gold Rush (tentative) <span class="text-danger">(In Development)</span></h3>
+                        <p>Survive for 3 minutes and defeat as many aliens as possible to earn lots of coins!</p>
+                    </div>
+                </div>
+                <div class="minigame-item">
+                    <!-- JavaScript Image Slider -->
+                    <div class="image-slider" data-game="12">
+                        <div class="slider-track">
+                            <!-- Images will be dynamically loaded here -->
+                            <div class="image-placeholder">
+                                <span>Loading images...</span>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="changeSlide(this, -1)" aria-label="Previous Image">&lt;</button>
+                        <button class="slider-btn next-btn" onclick="changeSlide(this, 1)" aria-label="Next Image">&gt;</button>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="minigame-content">
+                        <h3>With Spirits (tentative) <span class="text-danger">(In Development)</span></h3>
+                        <p>Team up with spirits to find and destroy the source that is ruining their sanctuary!</p>
                     </div>
                 </div>
                     </div>
@@ -753,7 +827,8 @@
             var gameYear = {
                 '1': '2024',
                 '2': '2025', '3': '2025', '4': '2025', '5': '2025',
-                '6': '2025', '7': '2025', '8': '2025'
+                '6': '2025', '7': '2025', '8': '2025',
+                '9': '2025', '10': '2026-1', '11': '2026-1', '12': '2026-1'
             };
             var idx = 0;
 
